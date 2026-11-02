@@ -2,135 +2,148 @@
 <html lang="pt-PT">
 <head>
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,400;100,600;100,800;112,800&display=block" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
 <style>
+/* digiUP Design System tokens (tokens.json) */
 :root{
-  --cream:#F4F1E9; --blue:#2036E0; --navy:#101B3E; --lime:#C6E43A; --slate:#3C4566; --line:#D7D6D3;
+  --du-black:#0a0305; --du-black-card:#170a0d; --du-cream:#f7efe9; --du-white:#ffffff;
+  --du-red:#e8112d; --du-crimson:#b00e22;
+  --du-cream-86:rgba(247,239,233,.86); --du-cream-72:rgba(247,239,233,.72); --du-cream-68:rgba(247,239,233,.68);
+  --du-cream-55:rgba(247,239,233,.55); --du-cream-28:rgba(247,239,233,.28); --du-cream-14:rgba(247,239,233,.14); --du-cream-10:rgba(247,239,233,.1);
+  --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
+  --du-glow-corner:radial-gradient(115% 62% at 84% 12%,rgba(176,14,34,.46) 0%,rgba(10,3,5,0) 68%);
+  --du-glow-soft:radial-gradient(105% 55% at 90% 8%,rgba(176,14,34,.35) 0%,rgba(10,3,5,0) 62%);
+  --du-glow-low:radial-gradient(110% 60% at 12% 96%,rgba(176,14,34,.42) 0%,rgba(10,3,5,0) 66%);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#888;font-family:'Archivo',sans-serif;display:flex;flex-direction:column;gap:40px;padding:40px;align-items:flex-start}
-.s{width:1080px;height:1350px;position:relative;overflow:hidden;padding:110px 96px 96px;display:flex;flex-direction:column}
-.cream{background:var(--cream);color:var(--navy)}
-.blue{background:var(--blue);color:var(--cream)}
-.navy{background:var(--navy);color:var(--cream)}
-.kicker{display:flex;align-items:center;gap:18px;font-weight:800;font-size:26px;letter-spacing:.14em;text-transform:uppercase}
-.kicker:before{content:"";width:48px;height:5px;background:currentColor}
-.cream .kicker{color:var(--blue)}
-.blue .kicker,.navy .kicker{color:var(--lime)}
-h1,h2{font-weight:800;font-stretch:112%;letter-spacing:-.02em;line-height:1.02}
-h1{font-size:130px;margin-top:56px}
-h2{font-size:92px;margin-top:48px}
-.hl{background:linear-gradient(transparent 58%,var(--lime) 58%,var(--lime) 92%,transparent 92%);padding:0 6px;margin:0 -6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.lead{font-size:40px;line-height:1.35;margin-top:40px;max-width:860px}
-.cream .lead{color:var(--slate)}
-.foot{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between}
-.foot img{height:64px}
-.swipe{font-weight:600;font-size:30px;display:flex;align-items:center;gap:14px}
-.pager{font-weight:600;font-size:26px;letter-spacing:.08em;opacity:.85}
-.keys{display:flex;flex-wrap:wrap;gap:20px;margin-top:64px}
-kbd{font-family:inherit;font-weight:800;font-size:48px;border:4px solid currentColor;border-bottom-width:9px;border-radius:18px;padding:14px 26px;line-height:1;display:inline-block}
-.keytable{margin-top:56px;display:flex;flex-direction:column;gap:0}
-.keytable .row{display:grid;grid-template-columns:330px 1fr;align-items:center;padding:24px 0;border-top:2px solid rgba(244,241,233,.35)}
-.keytable .row:last-child{border-bottom:2px solid rgba(244,241,233,.35)}
-.keytable kbd{font-size:34px;padding:12px 22px;border-color:var(--cream)}
-.keytable span{font-size:38px;line-height:1.25}
-.cards{display:flex;flex-direction:column;gap:28px;margin-top:64px}
-.card{background:#fff;border:2px solid var(--line);border-radius:28px;padding:40px 44px;display:flex;gap:36px;align-items:center}
-.num{flex:none;width:84px;height:84px;border-radius:18px;background:#E1E4FA;color:var(--blue);font-weight:800;font-size:34px;display:flex;align-items:center;justify-content:center}
-.card p{font-size:44px;font-weight:600;line-height:1.2}
-.note{margin-top:40px;font-size:32px;line-height:1.35;color:var(--slate);border-left:8px solid var(--blue);background:#E1E4FA;padding:26px 32px;border-radius:0 20px 20px 0}
-.big{font-weight:800;font-stretch:112%;font-size:96px;line-height:1.06;letter-spacing:-.02em;margin-top:auto}
-.big .l{color:var(--lime)}
-.fixes{margin-top:56px;display:flex;flex-direction:column}
-.fix{display:flex;gap:30px;align-items:flex-start;padding:30px 0;border-top:2px solid var(--line)}
-.fix:last-child{border-bottom:2px solid var(--line)}
-.tick{flex:none;width:60px;height:60px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;margin-top:2px}
-.fix b{display:block;font-size:42px;line-height:1.15}
-.fix span{display:block;font-size:34px;color:var(--slate);margin-top:8px;line-height:1.3}
-.cta{margin-top:56px;display:flex;flex-direction:column;gap:24px}
-.ctarow{display:flex;gap:28px;align-items:center;font-size:42px;font-weight:600;line-height:1.2}
-.ctarow i{flex:none;width:76px;height:76px;border-radius:50%;background:var(--lime);color:var(--navy);font-style:normal;font-weight:800;font-size:34px;display:flex;align-items:center;justify-content:center}
-.next{margin-top:64px;padding-top:36px;border-top:2px solid rgba(244,241,233,.4);font-size:32px;line-height:1.35}
-.next b{color:var(--lime);letter-spacing:.12em;font-size:24px;display:block;margin-bottom:10px}
+body{background:#17181a;font-family:var(--du-font-sans);display:flex;flex-wrap:wrap;gap:48px;padding:56px;align-items:flex-start}
+.s{position:relative;width:1080px;height:1350px;flex-shrink:0;overflow:hidden;isolation:isolate;background:var(--du-black);color:var(--du-cream);display:flex;flex-direction:column;padding:76px 82px 82px}
+.net{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.glow{position:absolute;inset:0;z-index:-1}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top img{width:118px;height:auto}
+.counter{font-family:var(--du-font-mono);font-size:16px;letter-spacing:.16em;color:var(--du-cream-55)}
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.2em;text-transform:uppercase;color:var(--du-cream-72)}
+.eyebrow .dot{width:11px;height:11px;border-radius:50%;background:var(--du-red)}
+.h{font-weight:700;letter-spacing:-.035em;line-height:1.04}
+.hl{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.hl > div{font-size:76px;font-weight:700;letter-spacing:-.035em;line-height:1.08}
+.hl .c{background:var(--du-cream);color:var(--du-black);padding:2px 20px;border-radius:6px}
+.hl .r{background:var(--du-red);color:var(--du-white);padding:2px 20px;border-radius:6px}
+.body{font-size:27px;line-height:1.52;color:var(--du-cream-72);max-width:780px;text-wrap:pretty}
+.meta{padding-top:30px;border-top:1px solid var(--du-cream-14);display:flex;justify-content:space-between;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:var(--du-cream-72)}
+.keys{display:flex;flex-wrap:wrap;gap:16px}
+.key{font-family:var(--du-font-mono);font-weight:500;font-size:24px;letter-spacing:.06em;border:1px solid var(--du-cream-28);border-bottom-width:4px;border-radius:12px;padding:14px 22px;color:var(--du-cream)}
+.rows{display:flex;flex-direction:column}
+.row{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:center;padding:28px 0;border-top:1px solid var(--du-cream-14)}
+.row:last-child{border-bottom:1px solid var(--du-cream-14)}
+.row .key{justify-self:start;font-size:22px;padding:10px 18px}
+.row span{font-size:28px;line-height:1.35;color:var(--du-cream-86)}
+.cards{display:flex;flex-direction:column;gap:22px}
+.card{background:var(--du-black-card);border:1px solid var(--du-cream-10);border-radius:16px;padding:46px 42px;display:grid;grid-template-columns:96px 1fr;align-items:center}
+.card .n{font-size:52px;font-weight:700;letter-spacing:-.05em;line-height:.9;color:var(--du-red)}
+.card p{font-size:40px;font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.fix{display:grid;grid-template-columns:34px 1fr;gap:10px 20px;padding:30px 0;border-top:1px solid var(--du-cream-14)}
+.fix:last-child{border-bottom:1px solid var(--du-cream-14)}
+.fix i{width:11px;height:11px;border-radius:50%;background:var(--du-red);margin-top:16px}
+.fix b{font-size:36px;font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.fix span{grid-column:2;font-size:26px;line-height:1.45;color:var(--du-cream-72)}
+.pill{display:inline-flex;align-items:center;gap:14px;background:var(--du-red);color:var(--du-white);border-radius:999px;padding:22px 36px;font-size:26px;font-weight:600}
+.disc{width:66px;height:66px;border-radius:50%;background:var(--du-red);color:var(--du-white);display:flex;align-items:center;justify-content:center;font-size:28px}
+.note{font-size:24px;line-height:1.5;color:var(--du-cream-72);border-top:1px solid var(--du-cream-14);padding-top:26px}
 </style>
 </head>
 <body>
 
-<!-- 1. Capa -->
-<section class="s cream" id="s1">
-  <div class="kicker">Acessível por defeito</div>
-  <h1>Consegues usar o teu site <span class="hl">sem rato?</span></h1>
-  <p class="lead" style="font-size:46px">Tenta durante 2 minutos. Só com o teclado.</p>
-  <div class="keys" aria-hidden="true" style="color:var(--navy);margin-top:64px;gap:22px">
-    <kbd>Tab</kbd><kbd>Shift + Tab</kbd><kbd>Enter</kbd><kbd>Espaço</kbd><kbd>← →</kbd>
+<!-- 01 Capa -->
+<section class="s" id="s1">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="glow" style="background:var(--du-glow-corner)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">01/06</span></div>
+  <div class="eyebrow" style="margin-top:104px"><span class="dot"></span>Acessibilidade digital · Desafio</div>
+  <div class="hl" style="margin-top:38px">
+    <div>Dois minutos</div>
+    <div class="c">sem rato</div>
+    <div class="r">no seu site.</div>
   </div>
-  <div class="foot">
-    <img src="logo-navy.png" alt="digiUP">
-    <div class="swipe">Desliza <svg width="44" height="24" viewBox="0 0 44 24"><path d="M0 12h40M30 2l10 10-10 10" fill="none" stroke="#101B3E" stroke-width="4"/></svg></div>
+  <p class="body" style="margin-top:38px">Pouse o rato e tente preencher um formulário só com o teclado.</p>
+  <div class="keys" style="margin-top:44px">
+    <span class="key">TAB</span><span class="key">SHIFT + TAB</span><span class="key">ENTER</span><span class="key">ESPAÇO</span><span class="key">← →</span>
+  </div>
+  <div class="meta" style="margin-top:auto"><span>Desliza →</span><span>digiup.me</span></div>
+</section>
+
+<!-- 02 Instruções -->
+<section class="s" id="s2">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">02/06</span></div>
+  <div class="eyebrow" style="margin-top:88px">— O desafio</div>
+  <div class="h" style="margin-top:30px;font-size:76px">Pouse o rato.</div>
+  <p class="body" style="margin-top:26px">Abra um formulário real do seu site — contacto, inscrição ou checkout — e use só estas teclas.</p>
+  <div class="rows" style="margin-top:auto">
+    <div class="row"><span class="key">TAB</span><span>Avança para o elemento seguinte.</span></div>
+    <div class="row"><span class="key">SHIFT + TAB</span><span>Volta ao elemento anterior.</span></div>
+    <div class="row"><span class="key">ENTER</span><span>Abre um link ou carrega num botão.</span></div>
+    <div class="row"><span class="key">ESPAÇO</span><span>Marca uma caixa ou carrega num botão.</span></div>
+    <div class="row"><span class="key">← →</span><span>Escolhe uma opção numa lista.</span></div>
   </div>
 </section>
 
-<!-- 2. Instruções -->
-<section class="s blue" id="s2">
-  <div class="kicker">O desafio</div>
-  <h2>Pousa o rato.</h2>
-  <p class="lead">Abre um formulário real do teu site: contacto, inscrição ou checkout. Usa só estas teclas.</p>
-  <div class="keytable">
-    <div class="row"><div><kbd>Tab</kbd></div><span>Avança para o elemento seguinte</span></div>
-    <div class="row"><div><kbd>Shift + Tab</kbd></div><span>Volta ao elemento anterior</span></div>
-    <div class="row"><div><kbd>Enter</kbd></div><span>Abre um link ou carrega num botão</span></div>
-    <div class="row"><div><kbd>Espaço</kbd></div><span>Marca uma caixa ou carrega num botão</span></div>
-    <div class="row"><div><kbd>← →</kbd></div><span>Escolhe uma opção numa lista</span></div>
-  </div>
-  <div class="foot"><span></span><span class="pager">2 / 6</span></div>
-</section>
-
-<!-- 3. Perguntas -->
-<section class="s cream" id="s3">
-  <div class="kicker">Depois, responde</div>
-  <h2>Três <span class="hl">perguntas</span></h2>
-  <div class="cards">
-    <div class="card"><div class="num">01</div><p>Onde é que te perdeste?</p></div>
-    <div class="card"><div class="num">02</div><p>Sabias sempre onde estava o foco?</p></div>
-    <div class="card"><div class="num">03</div><p>O leitor de ecrã disse alguma coisa útil nas imagens e nos botões?</p></div>
+<!-- 03 Perguntas -->
+<section class="s" id="s3">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">03/06</span></div>
+  <div class="eyebrow" style="margin-top:88px">— Depois, responda</div>
+  <div class="h" style="margin-top:30px;font-size:76px">Três perguntas.</div>
+  <div class="cards" style="margin:auto 0">
+    <div class="card"><span class="n">01</span><p>Em que ponto se perdeu?</p></div>
+    <div class="card"><span class="n">02</span><p>Sabia sempre onde estava o foco?</p></div>
+    <div class="card"><span class="n">03</span><p>O leitor de ecrã disse algo útil nas imagens e nos botões?</p></div>
   </div>
   <p class="note">Leitor de ecrã: o VoiceOver já vem no Mac e no iPhone. No Windows, o NVDA é gratuito.</p>
-  <div class="foot"><span></span><span class="pager">3 / 6</span></div>
 </section>
 
-<!-- 4. Frase -->
-<section class="s navy" id="s4">
-  <div class="kicker">A diferença</div>
-  <p class="big">Para nós, foram dois minutos chatos.<br><span class="l">Para algumas pessoas, é assim todos os dias, em quase todos os sites.</span></p>
-  <div class="foot" style="margin-top:96px"><span></span><span class="pager">4 / 6</span></div>
+<!-- 04 Frase -->
+<section class="s" id="s4">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="glow" style="background:var(--du-glow-low)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">04/06</span></div>
+  <div class="eyebrow" style="margin-top:88px">— A diferença</div>
+  <div class="hl" style="margin:auto 0">
+    <div>Para nós, foram</div>
+    <div>dois minutos chatos.</div>
+    <div class="c" style="margin-top:28px">Para algumas pessoas,</div>
+    <div class="r">é todos os dias.</div>
+    <p class="body" style="margin-top:40px">Em quase todos os sites. A barreira raramente está na pessoa — está quase sempre no que desenhámos.</p>
+  </div>
+  <div class="meta"><span>Formação interna · digiUP</span><span>Amarante, PT</span></div>
 </section>
 
-<!-- 5. O que corrigir -->
-<section class="s cream" id="s5">
-  <div class="kicker">A barreira está no design</div>
-  <h2>Três coisas que <span class="hl">resolvem</span> quase tudo</h2>
-  <div class="fixes">
-    <div class="fix"><div class="tick"><svg width="30" height="24" viewBox="0 0 30 24"><path d="M3 12l8 8L27 4" fill="none" stroke="#F4F1E9" stroke-width="5"/></svg></div><div><b>Foco sempre visível</b><span>Nunca tirar o contorno sem pôr outro destaque no lugar.</span></div></div>
-    <div class="fix"><div class="tick"><svg width="30" height="24" viewBox="0 0 30 24"><path d="M3 12l8 8L27 4" fill="none" stroke="#F4F1E9" stroke-width="5"/></svg></div><div><b>Botões que dizem o que fazem</b><span>«Enviar pedido», não «Clique aqui» nem um ícone sem nome.</span></div></div>
-    <div class="fix"><div class="tick"><svg width="30" height="24" viewBox="0 0 30 24"><path d="M3 12l8 8L27 4" fill="none" stroke="#F4F1E9" stroke-width="5"/></svg></div><div><b>Tab na ordem da leitura</b><span>De cima para baixo, sem saltos nem armadilhas em menus e janelas.</span></div></div>
+<!-- 05 O que resolve -->
+<section class="s" id="s5">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">05/06</span></div>
+  <div class="eyebrow" style="margin-top:88px">— O que resolve</div>
+  <div class="h" style="margin-top:30px;font-size:70px;max-width:860px">Três correções que resolvem quase tudo.</div>
+  <div style="margin-top:auto">
+    <div class="fix"><i></i><b>Foco sempre visível.</b><span>Nunca retirar o contorno sem pôr outro destaque no lugar.</span></div>
+    <div class="fix"><i></i><b>Botões que dizem o que fazem.</b><span>«Enviar pedido», não «Clique aqui» nem um ícone sem nome.</span></div>
+    <div class="fix"><i></i><b>Tab na ordem da leitura.</b><span>De cima para baixo, sem saltos nem armadilhas em menus e janelas.</span></div>
   </div>
-  <div class="foot"><span></span><span class="pager">5 / 6</span></div>
 </section>
 
-<!-- 6. CTA -->
-<section class="s blue" id="s6">
-  <div class="kicker">A tua vez</div>
-  <h2>Experimenta e conta-nos onde te perdeste.</h2>
-  <div class="cta">
-    <div class="ctarow"><i>1</i>Faz o teste no teu site</div>
-    <div class="ctarow"><i>2</i>Comenta onde te perdeste</div>
-    <div class="ctarow"><i>3</i>Guarda o post para a equipa</div>
+<!-- 06 CTA -->
+<section class="s" id="s6">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="glow" style="background:var(--du-glow-soft)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">06/06</span></div>
+  <div style="margin:auto 0;display:flex;flex-direction:column;gap:38px;align-items:flex-start">
+    <div class="eyebrow"><span class="dot"></span>A sua vez</div>
+    <div class="h" style="font-size:72px;max-width:860px">Onde é que se perdeu?</div>
+    <p class="body">Faça o teste e conte-nos nos comentários. Se quiser saber o que corrigir primeiro, analisamos o seu site.</p>
+    <div style="display:flex;align-items:center;gap:22px"><span class="pill">Vamos conversar <span>→</span></span><span class="disc">↗</span></div>
   </div>
-  <div class="next"><b>NA PRÓXIMA SEMANA</b>O mesmo desafio, em vídeo, com a nossa equipa.</div>
-  <div class="foot">
-    <img src="logo-white.png" alt="digiUP">
-    <span class="pager">@digiup.me</span>
-  </div>
+  <div class="meta"><span>digiup.me</span><span>Amarante, PT</span></div>
 </section>
 
 </body>
