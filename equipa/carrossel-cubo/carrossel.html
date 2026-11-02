@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+/* Carrossel «Todo o desafio tem solução.» — foto com o cubo a cores + slide de contacto */
+:root{
+  --du-black:#0a0305; --du-cream:#f7efe9; --du-paper:#faf7f4; --du-white:#ffffff; --du-red:#e8112d; --du-crimson:#b00e22;
+  --du-cream-86:rgba(247,239,233,.86); --du-cream-14:rgba(247,239,233,.14);
+  --du-ink:#0a0305; --du-ink-72:rgba(10,3,5,.72);
+  --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);display:flex;flex-wrap:wrap;gap:48px;padding:56px;align-items:flex-start}
+.s{position:relative;width:1080px;height:1350px;flex-shrink:0;overflow:hidden;isolation:isolate}
+.abs{position:absolute}
+.top{position:absolute;left:82px;right:82px;top:76px;display:flex;justify-content:space-between;align-items:center}
+.top img{width:118px}
+.mono{font-family:var(--du-font-mono);font-size:26px;letter-spacing:.06em;line-height:1.35}
+.up{text-transform:uppercase}
+.giant{font-weight:800;letter-spacing:-.055em;line-height:.9}
+.body{font-size:32px;line-height:1.45}
+.arrow{font-size:64px;line-height:1}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--du-red);margin-right:14px;vertical-align:4px}
+.hl{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.hl > div{font-size:76px;font-weight:700;letter-spacing:-.035em;line-height:1.08}
+.hl .c{background:var(--du-cream);color:var(--du-black);padding:2px 20px;border-radius:6px}
+.hl .r{background:var(--du-red);color:var(--du-white);padding:2px 20px;border-radius:6px}
+.pill{display:inline-flex;align-items:center;gap:14px;background:var(--du-red);color:var(--du-white);border-radius:999px;padding:24px 40px;font-size:30px;font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- 01 · foto: o cubo a cores -->
+<section class="s" id="s1" style="background:var(--du-paper)">
+  <img class="abs" src="rubik-cor.jpg" alt="Um elemento da equipa digiUP, de t-shirt preta com o logótipo, segura um cubo de Rubik à frente da cara e sorri. A fotografia é a preto e branco e só o cubo, amarelo e verde, está a cores." style="inset:0;width:100%;height:100%;z-index:-2">
+  <div class="abs" style="inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,3,5,0) 82%,rgba(10,3,5,.86) 92%,rgba(10,3,5,.95) 100%)"></div>
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono up" style="color:var(--du-ink-72)">O desafio primeiro</span></div>
+  <div class="abs giant" style="left:76px;top:236px;font-size:108px;color:var(--du-ink)">Todo o<br>desafio tem<br><span style="color:var(--du-crimson)">solução.</span></div>
+  <div class="abs" style="left:82px;right:82px;bottom:76px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px">
+    <p class="body" style="color:var(--du-cream-86);max-width:760px">Às vezes, é preciso rodá-lo algumas vezes.</p>
+    <span class="arrow" aria-hidden="true" style="color:var(--du-cream)">→</span>
+  </div>
+</section>
+
+<!-- 02 · contacto -->
+<section class="s" id="s2" style="background:var(--du-black);color:var(--du-cream)">
+  <img class="abs" src="net-subtle-1080x1350.svg" alt="" style="inset:0;width:100%;height:100%;object-fit:cover;z-index:-2">
+  <div class="abs" style="inset:0;z-index:-1;background:radial-gradient(60% 40% at 78% 26%,rgba(176,14,34,.45) 0%,rgba(10,3,5,0) 70%)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="mono" style="color:var(--du-cream-86)">02/02</span></div>
+  <img class="abs" src="cubo-detalhe.jpg" alt="O cubo de Rubik a cores, em grande plano, seguro pelos dedos." style="right:82px;top:190px;width:420px;height:420px;border-radius:24px;object-fit:cover;box-shadow:0 0 0 10px var(--du-black),0 0 0 15px var(--du-red),0 0 60px 14px rgba(232,17,45,.4)">
+  <div class="abs" style="left:82px;top:200px;width:380px">
+    <div class="mono up" style="color:var(--du-cream-86)"><span class="dot"></span>Fale connosco</div>
+    <div class="mono" style="color:var(--du-cream-86);margin-top:180px">Engineering<br>Growth &amp; Strategy<br>Creative &amp; Content<br>Labs</div>
+  </div>
+  <div class="abs" style="left:82px;right:82px;top:690px">
+    <div class="hl"><div>Qual é o seu</div><div class="c">cubo por</div><div class="r">resolver?</div></div>
+    <p class="body" style="margin-top:30px;color:var(--du-cream-86);max-width:860px">Conte-nos o desafio. Ajudamos a definir os próximos passos.</p>
+    <div style="margin-top:36px"><span class="pill">Fale-nos do seu desafio <span>→</span></span></div>
+  </div>
+  <div class="abs mono" style="left:82px;right:82px;bottom:76px;padding-top:24px;border-top:1px solid var(--du-cream-14);display:flex;justify-content:space-between;color:var(--du-cream-86)"><span>Mensagem: @digiup.me</span><span>digiup.me</span></div>
+</section>
+
+</body>
+</html>
