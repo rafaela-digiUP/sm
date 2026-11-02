@@ -68,16 +68,22 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
       }
       return out;
     }, id);
+    const withText = PNG.sync.read(await p.locator('#' + id).screenshot());   // to find where glyphs actually are
     await p.addStyleTag({ content: `#${id} *{color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important;caret-color:transparent!important} #${id} text,#${id} tspan,#${id} textPath{fill:transparent!important;stroke:none!important}` });
     const buf = await p.locator('#' + id).screenshot();
     await p.evaluate(() => document.querySelectorAll('style').forEach((s, i, a) => { if (i === a.length - 1) s.remove(); }));
     const png = PNG.sync.read(buf);
+    // glyph mask: pixels that change when the text is hidden, dilated by 3px (the halo a reader needs)
+    const W = png.width, H = png.height, raw = new Uint8Array(W * H), glyph = new Uint8Array(W * H);
+    for (let i = 0; i < W * H; i++) { const k = i * 4; if (Math.abs(png.data[k] - withText.data[k]) + Math.abs(png.data[k + 1] - withText.data[k + 1]) + Math.abs(png.data[k + 2] - withText.data[k + 2]) > 36) raw[i] = 1; }
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (raw[y * W + x]) for (let dy = -3; dy <= 3; dy++) for (let dx = -3; dx <= 3; dx++) { const yy = y + dy, xx = x + dx; if (yy >= 0 && yy < H && xx >= 0 && xx < W) glyph[yy * W + xx] = 1; }
     for (const r of runs) {
       const vals = [];
       for (const q of r.rects) {
         const x0 = Math.max(0, Math.ceil(q.x) + 2), y0 = Math.max(0, Math.ceil(q.y) + 2);
         const x1 = Math.min(png.width - 1, Math.floor(q.x + q.w) - 3), y1 = Math.min(png.height - 1, Math.floor(q.y + q.h) - 3);
         for (let y = y0; y <= y1; y += 2) for (let x = x0; x <= x1; x += 2) {
+          if (!glyph[y * png.width + x]) continue;
           const i = (y * png.width + x) * 4; const bg = [png.data[i], png.data[i + 1], png.data[i + 2]];
           const fg = r.color.map((c, k) => c * r.alpha + bg[k] * (1 - r.alpha));
           vals.push(ratio(fg, bg));
