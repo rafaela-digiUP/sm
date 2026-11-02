@@ -33,18 +33,32 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
       while ((n = walker.nextNode())) {
         const t = n.textContent.replace(/\s+/g, ' ').trim(); if (!t) continue;
         const el = n.parentElement; const cs = getComputedStyle(el);
+        if (el.closest('[aria-hidden="true"]')) continue; // decorative duplicates
         if (cs.visibility === 'hidden' || cs.display === 'none') continue;
         let op = 1; for (let e = el; e && e !== sec.parentElement; e = e.parentElement) op *= +getComputedStyle(e).opacity;
         const r = document.createRange(); r.selectNodeContents(n);
+        let svgRects = null;
+        if (el instanceof SVGTextContentElement) {          // curved/SVG text: measure glyph by glyph
+          const host = el.closest('text'); const m = host.getScreenCTM(); svgRects = [];
+          for (let i = 0; i < el.getNumberOfChars(); i++) {
+            const e = el.getExtentOfChar(i);
+            const pts = [[e.x, e.y], [e.x + e.width, e.y], [e.x, e.y + e.height], [e.x + e.width, e.y + e.height]]
+              .map(([x, y]) => new DOMPoint(x, y).matrixTransform(m));
+            const xs = pts.map(q => q.x), ys = pts.map(q => q.y);
+            const cx = (Math.min(...xs) + Math.max(...xs)) / 2, cy = (Math.min(...ys) + Math.max(...ys)) / 2, hw = e.width / 2, hh = e.height / 2;
+            svgRects.push({ x: cx - hw - sr.left, y: cy - hh - sr.top, w: e.width, h: e.height });
+          }
+        }
         const pb = el.getBoundingClientRect();
-        const rects = [...r.getClientRects()].map(q => {
+        let rects = [...r.getClientRects()].map(q => {
             const l = Math.max(q.left, pb.left), t = Math.max(q.top, pb.top), rr = Math.min(q.right, pb.right), bb = Math.min(q.bottom, pb.bottom);
             return { left: l, top: t, width: rr - l, height: bb - t };
           }).filter(q => q.width > 1 && q.height > 1)
           .map(q => ({ x: q.left - sr.left, y: q.top - sr.top, w: q.width, h: q.height }))
           .filter(q => q.x < 1080 && q.y < 1350 && q.x + q.w > 0 && q.y + q.h > 0);
+        if (svgRects) rects.splice(0, rects.length, ...svgRects);
         if (!rects.length) continue;
-        const m = cs.color.match(/[\d.]+/g).map(Number);
+        const m = ((el instanceof SVGTextContentElement) ? cs.fill : cs.color).match(/[\d.]+/g).map(Number);
         out.push({ text: t.slice(0, 60), size: parseFloat(cs.fontSize), weight: +cs.fontWeight, ls: cs.letterSpacing,
           family: cs.fontFamily.split(',')[0].replace(/['"]/g, ''), italic: cs.fontStyle !== 'normal',
           upper: cs.textTransform === 'uppercase', body: !!el.closest('.body,p'),
@@ -52,7 +66,7 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
       }
       return out;
     }, id);
-    await p.addStyleTag({ content: `#${id} *{color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important;caret-color:transparent!important}` });
+    await p.addStyleTag({ content: `#${id} *{color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important;caret-color:transparent!important} #${id} text,#${id} tspan,#${id} textPath{fill:transparent!important;stroke:none!important}` });
     const buf = await p.locator('#' + id).screenshot();
     await p.evaluate(() => document.querySelectorAll('style').forEach((s, i, a) => { if (i === a.length - 1) s.remove(); }));
     const png = PNG.sync.read(buf);

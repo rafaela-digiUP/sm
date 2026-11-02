@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+/* digiUP feed — nine single posts, one visual language each, same tokens */
+:root{
+  --du-black:#0a0305; --du-black-card:#170a0d; --du-cream:#f7efe9; --du-paper:#faf7f4; --du-white:#ffffff;
+  --du-red:#e8112d; --du-crimson:#b00e22;
+  --du-cream-86:rgba(247,239,233,.86); --du-cream-72:rgba(247,239,233,.72); --du-cream-28:rgba(247,239,233,.28); --du-cream-14:rgba(247,239,233,.14);
+  --du-ink:#0a0305; --du-ink-72:rgba(10,3,5,.72); --du-ink-14:rgba(10,3,5,.14);
+  --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);display:flex;flex-wrap:wrap;gap:48px;padding:56px;align-items:flex-start}
+.s{position:relative;width:1080px;height:1350px;flex-shrink:0;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;padding:76px 82px 82px}
+.dark{background:var(--du-black);color:var(--du-cream)}
+.light{background:var(--du-paper);color:var(--du-ink)}
+.abs{position:absolute}
+.top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:3}
+.top img{width:118px;height:auto}
+.mono{font-family:var(--du-font-mono);font-size:26px;letter-spacing:.06em;line-height:1.35}
+.dark .mono{color:var(--du-cream-86)} .light .mono{color:var(--du-ink-72)}
+.up{text-transform:uppercase}
+.giant{font-weight:800;letter-spacing:-.055em;line-height:.92}
+.h{font-weight:700;letter-spacing:-.035em;line-height:1.04}
+.body{font-size:32px;line-height:1.45;text-wrap:pretty}
+.dark .body{color:var(--du-cream-86)} .light .body{color:var(--du-ink-72)}
+.arrow{font-size:64px;line-height:1;font-weight:400}
+.hl{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.hl > div{font-size:76px;font-weight:700;letter-spacing:-.035em;line-height:1.08}
+.hl .c{background:var(--du-cream);color:var(--du-black);padding:2px 20px;border-radius:6px}
+.hl .r{background:var(--du-red);color:var(--du-white);padding:2px 20px;border-radius:6px}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--du-red);margin-right:14px;vertical-align:4px}
+.light .dot{background:var(--du-crimson)}
+.pill{display:inline-block;font-family:var(--du-font-mono);font-weight:500;background:var(--du-crimson);color:var(--du-white);border-radius:999px;padding:4px 26px 8px;letter-spacing:-.01em}
+.apill{display:inline-flex;align-items:center;border:3px solid currentColor;border-radius:999px;height:56px;padding:0 22px;vertical-align:middle}
+.apill svg{display:block}
+
+/* 02 CCTV */
+.hud{position:absolute;inset:40px;border:2px solid var(--du-cream-72);pointer-events:none}
+.tag{background:var(--du-black);color:var(--du-cream);font-family:var(--du-font-mono);font-size:26px;letter-spacing:.06em;padding:8px 14px}
+.box{position:absolute;border:4px solid var(--du-red)}
+.box span{position:absolute;left:-4px;top:-50px;background:var(--du-red);color:var(--du-white);font-family:var(--du-font-mono);font-weight:500;font-size:26px;letter-spacing:.02em;padding:6px 12px;white-space:nowrap}
+.box.below span{top:auto;bottom:-50px}
+
+/* 07 tiles */
+.tiles{display:grid;grid-template-columns:repeat(8,104px);gap:8px}
+.tiles i{height:104px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-style:normal;font-weight:700;font-size:64px;letter-spacing:-.02em}
+.tiles i.l{background:var(--du-crimson);color:var(--du-white)}
+.tiles i.e{border:2px solid var(--du-ink-14)}
+</style>
+</head>
+<body>
+
+<!-- 01 · claro · Herground: frase gigante + palavra circulada -->
+<section class="s light" id="s1">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono up">Como trabalhamos</span></div>
+  <div class="giant" style="margin-top:96px;font-size:128px">O desafio<br>primeiro.<br>A tecnologia<br><span style="position:relative;display:inline-block;margin-top:40px">depois.
+    <svg class="abs" style="left:-52px;top:-34px;width:calc(100% + 104px);height:186px;overflow:visible" viewBox="0 0 520 180" preserveAspectRatio="none" aria-hidden="true"><path d="M262 6 C 120 -2, 6 36, 4 92 C 2 156, 160 180, 300 176 C 440 172, 518 132, 514 82 C 510 30, 380 0, 230 10 C 170 14, 120 22, 92 32" fill="none" stroke="#b00e22" stroke-width="7" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></span></div>
+  <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+    <div class="mono">Engineering.<br>Growth &amp; Strategy.<br>Creative &amp; Content.<br>Labs.</div>
+    <span class="arrow" aria-hidden="true">→</span>
+  </div>
+</section>
+
+<!-- 02 · escuro · CCTV sobre um site -->
+<section class="s dark" id="s2" style="padding:0">
+  <img class="abs" src="cctv.png" alt="" style="inset:0;width:100%;height:100%">
+  <div class="hud"></div>
+  <div class="abs tag" style="left:64px;top:64px"><span class="dot"></span>CAM 01 · digiSHIELD</div>
+  <div class="abs tag" style="right:64px;top:64px">REC 03:12:47</div>
+  <div class="box below" style="left:550px;top:142px;width:484px;height:484px"><span>Carregamento: 6,8 s</span></div>
+  <div class="box" style="left:46px;top:664px;width:322px;height:350px"><span>7 plugins por atualizar</span></div>
+  <div class="box below" style="left:46px;top:1043px;width:988px;height:128px"><span>Formulário: 0 envios em 14 dias</span></div>
+  <div class="abs" style="left:64px;top:170px;width:450px;background:var(--du-black);padding:30px 32px 34px">
+    <div class="h" style="font-size:52px">Alguém tem de estar de olho no seu site.</div>
+  </div>
+  <div class="abs tag" style="left:64px;bottom:64px">Monitorização ativa</div>
+  <div class="abs tag" style="right:64px;bottom:64px">digiup.me</div>
+</section>
+
+<!-- 03 · claro · número gigante -->
+<section class="s light" id="s3">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono up">Desde 2013</span></div>
+  <div class="giant" style="margin-top:70px;font-size:420px;letter-spacing:-.07em;color:var(--du-crimson);margin-left:-18px">40+</div>
+  <div class="h" style="font-size:66px;margin-top:20px">projetos digitais<br>entregues.</div>
+  <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+    <span class="apill" aria-hidden="true"><svg width="150" height="24" viewBox="0 0 150 24"><path d="M0 12h144M134 2l10 10-10 10" fill="none" stroke="#0a0305" stroke-width="3"/></svg></span>
+    <span class="pill" style="font-size:30px">8 produtos ativos</span>
+    <span class="pill" style="font-size:30px">Amarante · Porto</span>
+  </div>
+  <p class="body" style="margin-top:auto;max-width:800px">Cada um começou com um desafio, não com uma tecnologia.</p>
+</section>
+
+<!-- 04 · escuro · ? insuflável -->
+<section class="s dark" id="s4">
+  <div class="abs" style="inset:0;z-index:-1;background:radial-gradient(70% 50% at 70% 34%,rgba(176,14,34,.45) 0%,rgba(10,3,5,0) 70%)"></div>
+  <img class="abs" src="interrogacao-3d.png" alt="" style="right:60px;top:190px;width:470px;z-index:0">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="mono">Vamos falar ↘</span></div>
+  <div style="margin-top:auto;position:relative;z-index:1">
+    <div class="hl">
+      <div>Que desafio</div>
+      <div class="c">vale a pena</div>
+      <div class="r">resolver agora?</div>
+    </div>
+    <p class="body" style="margin-top:30px;max-width:820px">Diga-nos o que quer melhorar. Ajudamos a definir os próximos passos.</p>
+  </div>
+  <div class="mono" style="margin-top:40px;padding-top:24px;border-top:1px solid var(--du-cream-14);display:flex;justify-content:space-between"><span>Fale-nos do seu desafio →</span><span>digiup.me</span></div>
+</section>
+
+<!-- 05 · claro · pílulas -->
+<section class="s light" id="s5">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono up">Engineering</span></div>
+  <div class="h" style="margin-top:120px;font-size:76px;line-height:1.3">
+    Bom software<br>não é só código.<br>
+    É <span class="pill" style="font-size:58px">útil,</span><br>
+    <span class="pill" style="font-size:58px">pensado para pessoas</span><br>
+    e <span class="pill" style="font-size:58px">feito para crescer.</span>
+  </div>
+  <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+    <div class="mono">Apps · Plataformas · Automações</div>
+    <span class="apill" aria-hidden="true"><svg width="110" height="24" viewBox="0 0 110 24"><path d="M0 12h104M94 2l10 10-10 10" fill="none" stroke="#0a0305" stroke-width="3"/></svg></span>
+  </div>
+</section>
+
+<!-- 06 · escuro · tipo em movimento -->
+<section class="s dark" id="s6">
+  <div class="abs" style="inset:0;z-index:-1;background:radial-gradient(90% 40% at 30% 46%,rgba(176,14,34,.42) 0%,rgba(10,3,5,0) 70%)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="arrow" aria-hidden="true">↘</span></div>
+  <div class="mono up" style="margin-top:110px"><span class="dot"></span>digiUP Labs</div>
+  <div style="position:relative;margin-top:40px">
+    <div aria-hidden="true" class="giant" style="position:absolute;left:0;top:0;font-size:176px;color:#e8112d;filter:blur(14px);transform:scaleX(1.18) translateX(-70px);opacity:.75;transform-origin:left">Testamos<br>depressa.</div>
+    <div aria-hidden="true" class="giant" style="position:absolute;left:0;top:0;font-size:176px;color:#e8112d;filter:blur(6px);transform:scaleX(1.06) translateX(-30px);opacity:.7;transform-origin:left">Testamos<br>depressa.</div>
+    <div class="giant" style="position:relative;font-size:176px">Testamos<br>depressa.</div>
+  </div>
+  <p class="body" style="margin-top:auto;max-width:860px">Protótipos, testes e IA para decidir onde faz sentido investir, antes de meses de desenvolvimento.</p>
+  <div class="mono up" style="margin-top:34px;padding-top:24px;border-top:1px solid var(--du-cream-14)">Testamos ideias · Construímos soluções com futuro</div>
+</section>
+
+<!-- 07 · claro · mosaico de letras -->
+<section class="s light" id="s7">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono up">Casos de estudo</span></div>
+  <div class="tiles" style="margin-top:80px" role="img" aria-label="O que muda depois é o que importa.">
+    <i class="l">O</i><i class="e"></i><i class="l">q</i><i class="l">u</i><i class="l">e</i><i class="e"></i><i class="e"></i><i class="e"></i>
+    <i class="e"></i><i class="e"></i><i class="e"></i><i class="l">m</i><i class="l">u</i><i class="l">d</i><i class="l">a</i><i class="e"></i>
+    <i class="e"></i><i class="l">d</i><i class="l">e</i><i class="l">p</i><i class="l">o</i><i class="l">i</i><i class="l">s</i><i class="e"></i>
+    <i class="l">é</i><i class="e"></i><i class="l">o</i><i class="e"></i><i class="l">q</i><i class="l">u</i><i class="l">e</i><i class="e"></i>
+    <i class="e"></i><i class="l">i</i><i class="l">m</i><i class="l">p</i><i class="l">o</i><i class="l">r</i><i class="l">t</i><i class="l">a</i>
+  </div>
+  <p class="body" style="margin-top:auto;max-width:860px">Gulbenkian Aprender, FootGenius, NefroNurses. Veja o que mudou depois.</p>
+  <div style="margin-top:30px;display:flex;justify-content:space-between;align-items:center"><span class="mono">digiup.me/work</span><span class="arrow" aria-hidden="true">→</span></div>
+</section>
+
+<!-- 08 · escuro · palavra gigante cortada + botão redondo -->
+<section class="s dark" id="s8">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="mono up">Desde 2013</span></div>
+  <div class="h" style="margin-top:90px;font-size:84px">Digital que<br>cria valor.</div>
+  <p class="body" style="margin-top:30px;max-width:620px">Experiência, tecnologia e IA para transformar desafios em resultados concretos.</p>
+  <div class="abs" style="right:82px;top:430px;width:250px;height:250px;border-radius:50%;background:var(--du-cream);color:var(--du-black);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;font-size:30px;line-height:1.2;padding:30px">Fale-nos do seu desafio</div>
+  <div aria-hidden="true" class="abs giant" style="left:56px;bottom:-112px;font-size:470px;color:var(--du-cream);letter-spacing:-.07em">valor.</div>
+</section>
+
+<!-- 09 · claro · esfera e texto em círculo -->
+<section class="s light" id="s9">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono up">Amarante · Porto</span></div>
+  <div class="abs" style="left:240px;top:290px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle at 46% 44%,#e8112d 0%,#b00e22 34%,rgba(176,14,34,.35) 56%,rgba(250,247,244,0) 72%);filter:blur(6px)"></div>
+  <svg class="abs" style="left:150px;top:200px" width="780" height="780" viewBox="0 0 780 780">
+    <defs><path id="circ" d="M390,390 m-340,0 a340,340 0 1,1 680,0 a340,340 0 1,1 -680,0"/></defs>
+    <text font-family="JetBrains Mono" font-size="30" letter-spacing="3" fill="#0a0305"><textPath href="#circ">PESSOAS PRIMEIRO · TECNOLOGIA COM PROPÓSITO · DIGITAL QUE CRIA VALOR · DESDE 2013 ·</textPath></text>
+  </svg>
+  <div style="margin-top:auto">
+    <div class="h" style="font-size:80px">Pessoas primeiro.</div>
+    <p class="body" style="margin-top:20px">Tecnologia com propósito.</p>
+  </div>
+</section>
+
+</body>
+</html>
