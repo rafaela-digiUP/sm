@@ -22,6 +22,8 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
   const p = await b.newPage({ viewport: { width: 1200, height: 1400 } });
   await p.goto('file://' + path.join(dir, 'carrossel.html'), { waitUntil: 'networkidle' });
   await p.evaluate(() => document.fonts.ready);
+  // measure rotated stickers in their upright position (same colours, honest bounding boxes)
+  await p.addStyleTag({ content: '[style*="rotate("]{transform:none!important}' });
   const ids = await p.evaluate(() => [...document.querySelectorAll('section.s')].map(s => s.id));
   const report = []; let fails = 0;
   for (const id of ids) {
@@ -55,7 +57,7 @@ const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
             return { left: l, top: t, width: rr - l, height: bb - t };
           }).filter(q => q.width > 1 && q.height > 1)
           .map(q => ({ x: q.left - sr.left, y: q.top - sr.top, w: q.width, h: q.height }))
-          .filter(q => q.x < 1080 && q.y < 1350 && q.x + q.w > 0 && q.y + q.h > 0);
+          .filter(q => q.x < sr.width && q.y < sr.height && q.x + q.w > 0 && q.y + q.h > 0);
         if (svgRects) rects.splice(0, rects.length, ...svgRects);
         if (!rects.length) continue;
         const m = ((el instanceof SVGTextContentElement) ? cs.fill : cs.color).match(/[\d.]+/g).map(Number);

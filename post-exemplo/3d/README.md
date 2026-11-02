@@ -10,3 +10,4 @@ Para voltar a gerar: `npm install three@0.160.0`, servir esta pasta (`python3 -m
 - `?mode=aa` — o «AA» extrudido em Lexend 700 (`post-eaa/aa-3d.png`, depois de recortado). Precisa de `lexend-700.ttf` na mesma pasta (Google Fonts).
 - `?mode=lock-open` e `?mode=lock-closed` — os cadeados do post digiSHIELD (`post-digishield/cadeado-*.png`, depois de recortados).
 - `?mode=q` — o «?» insuflável do feed (`feed/interrogacao-3d.png`, depois de recortado).
+- `?mode=txt&t=%2B1` — texto 3D insuflável à escolha (o «+1» da Story de aniversário). Passar os parâmetros extra como segundo argumento de `shot.js`.

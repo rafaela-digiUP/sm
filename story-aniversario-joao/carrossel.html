@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+/* Story 1080×1920 — safe zones: nothing that matters above 230px or below 1620px */
+:root{
+  --du-black:#0a0305; --du-cream:#f7efe9; --du-white:#ffffff; --du-red:#e8112d;
+  --du-cream-86:rgba(247,239,233,.86); --du-cream-14:rgba(247,239,233,.14);
+  --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);padding:56px}
+.s{position:relative;width:1080px;height:1920px;overflow:hidden;isolation:isolate;background:var(--du-black);color:var(--du-cream)}
+.abs{position:absolute}
+.mono{font-family:var(--du-font-mono);font-size:28px;letter-spacing:.04em;color:var(--du-cream-86)}
+.hl{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.hl > div{font-size:104px;font-weight:700;letter-spacing:-.035em;line-height:1.06}
+.hl .r{background:var(--du-red);color:var(--du-white);padding:0 24px 6px;border-radius:8px}
+</style>
+</head>
+<body>
+<section class="s" id="s1">
+  <img class="abs" src="net-subtle-1080x1350.svg" alt="" style="inset:0;width:100%;height:100%;object-fit:cover;z-index:-2">
+  <div class="abs" style="inset:0;z-index:-1;background:radial-gradient(70% 40% at 74% 22%,rgba(176,14,34,.5) 0%,rgba(10,3,5,0) 70%),radial-gradient(60% 30% at 10% 80%,rgba(176,14,34,.3) 0%,rgba(10,3,5,0) 70%)"></div>
+
+  <img class="abs" src="digiup-white.svg" alt="digiUP" style="left:82px;top:232px;width:118px">
+  <div class="abs mono" style="right:82px;top:236px">Hoje · Aniversário</div>
+
+  <!-- photo with the focus ring -->
+  <div class="abs" style="left:150px;top:370px;width:700px;height:875px;border-radius:20px;box-shadow:0 0 0 10px var(--du-black),0 0 0 15px var(--du-red),0 0 70px 18px rgba(232,17,45,.45)">
+    <img src="joao-pb.jpg" alt="Retrato de João Nascimento, a sorrir, de camisola cinzenta sobre camisa branca." style="width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:20px;display:block">
+  </div>
+  <div class="abs" style="left:136px;top:304px;background:var(--du-red);color:var(--du-white);font-family:var(--du-font-mono);font-weight:500;font-size:28px;padding:6px 16px">Foco: João Nascimento</div>
+
+  <img class="abs" src="mais1-3d.png" alt="" style="right:30px;top:300px;width:400px">
+
+  <div class="abs" style="left:96px;top:1196px;transform:rotate(-5deg);background:var(--du-cream);color:var(--du-black);font-family:var(--du-font-mono);font-weight:500;font-size:30px;padding:16px 26px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.45)">git commit -m "mais um ano"</div>
+
+  <div class="abs" style="left:82px;top:1310px">
+    <div class="hl">
+      <div>Parabéns,</div>
+      <div class="r">João.</div>
+    </div>
+    <div class="mono" style="margin-top:28px">João Nascimento · CTO da digiUP</div>
+  </div>
+</section>
+</body>
+</html>
