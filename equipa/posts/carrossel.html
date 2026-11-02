@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+/* Photo-led posts: giant statement on the wall, the person below, a dark base for the small text */
+:root{
+  --du-black:#0a0305; --du-cream:#f7efe9; --du-crimson:#b00e22; --du-red:#e8112d;
+  --du-cream-86:rgba(247,239,233,.86); --du-ink:#0a0305; --du-ink-72:rgba(10,3,5,.72);
+  --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);display:flex;flex-wrap:wrap;gap:48px;padding:56px}
+.s{position:relative;width:1080px;height:1350px;flex-shrink:0;overflow:hidden;isolation:isolate}
+.abs{position:absolute}
+.photo{position:absolute;inset:0;width:100%;height:100%;z-index:-2}
+.base{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,3,5,0) 66%,rgba(10,3,5,.88) 84%,rgba(10,3,5,.95) 100%)}
+.top{position:absolute;left:82px;right:82px;top:76px;display:flex;justify-content:space-between;align-items:center}
+.top img{width:118px}
+.mono{font-family:var(--du-font-mono);font-size:26px;letter-spacing:.06em;text-transform:uppercase;color:var(--du-ink-72)}
+.giant{position:absolute;left:76px;font-weight:800;letter-spacing:-.055em;line-height:.9;color:var(--du-ink)}
+.foot{position:absolute;left:82px;right:82px;bottom:76px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;color:var(--du-cream)}
+.foot p{font-size:32px;line-height:1.42;color:var(--du-cream-86);max-width:760px}
+.arrow{font-size:64px;line-height:1;color:var(--du-cream)}
+</style>
+</head>
+<body>
+
+<section class="s" id="s1">
+  <img class="photo" src="rubik-pb.jpg" alt="Um elemento da equipa digiUP, de t-shirt preta com o logótipo, segura um cubo de Rubik à frente da cara e sorri.">
+  <div class="base"></div>
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono">O desafio primeiro</span></div>
+  <div class="giant" style="top:150px;font-size:112px">Todo o<br>desafio tem<br><span style="color:var(--du-crimson)">solução.</span></div>
+  <div class="foot"><p>Às vezes, é preciso rodá-lo algumas vezes. <span style="white-space:nowrap">Fale-nos</span> do seu.</p><span class="arrow" aria-hidden="true">→</span></div>
+</section>
+
+<section class="s" id="s2">
+  <img class="photo" src="equipa-pb.jpg" alt="Dois elementos da equipa digiUP à volta de um portátil: um sentado, de mão no queixo, e outro de pé, inclinado, a apontar para o ecrã.">
+  <div class="base"></div>
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono">Como trabalhamos</span></div>
+  <div class="giant" style="top:150px;font-size:108px">Nem tudo<br>se resolve<br>com uma <span style="color:var(--du-crimson)">app.</span></div>
+  <div class="foot"><p>Primeiro percebemos o seu negócio. Depois escolhemos a abordagem certa.</p><span class="arrow" aria-hidden="true">→</span></div>
+</section>
+
+</body>
+</html>
