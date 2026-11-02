@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+/* digiUP Design System — dark (#0A0305) and paper (#FAF7F4) alternate; on paper the only red is crimson */
+:root{
+  --du-black:#0a0305; --du-black-card:#170a0d; --du-cream:#f7efe9; --du-paper:#faf7f4; --du-white:#ffffff;
+  --du-red:#e8112d; --du-crimson:#b00e22;
+  --du-cream-86:rgba(247,239,233,.86); --du-cream-72:rgba(247,239,233,.72); --du-cream-55:rgba(247,239,233,.55);
+  --du-cream-14:rgba(247,239,233,.14); --du-cream-10:rgba(247,239,233,.1);
+  --du-ink:#0a0305; --du-ink-72:rgba(10,3,5,.72); --du-ink-62:rgba(10,3,5,.62); --du-ink-14:rgba(10,3,5,.14);
+  --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);display:flex;flex-wrap:wrap;gap:48px;padding:56px;align-items:flex-start}
+.s{position:relative;width:1080px;height:1350px;flex-shrink:0;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;padding:76px 82px 82px}
+.dark{background:var(--du-black);color:var(--du-cream)}
+.light{background:var(--du-paper);color:var(--du-ink)}
+.net{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.glow{position:absolute;inset:0;z-index:-1}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top img{width:118px;height:auto}
+.counter{font-family:var(--du-font-mono);font-size:16px;letter-spacing:.16em}
+.dark .counter{color:var(--du-cream-55)} .light .counter{color:var(--du-ink-62)}
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.2em;text-transform:uppercase}
+.dark .eyebrow{color:var(--du-cream-72)}
+.eyebrow .dot{width:11px;height:11px;border-radius:50%;background:var(--du-red)}
+.h{font-weight:700;letter-spacing:-.035em;line-height:1.04}
+.hl{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.hl > div{font-size:76px;font-weight:700;letter-spacing:-.035em;line-height:1.08}
+.hl .c{background:var(--du-cream);color:var(--du-black);padding:2px 20px;border-radius:6px}
+.hl .r{background:var(--du-red);color:var(--du-white);padding:2px 20px;border-radius:6px}
+.body{font-size:27px;line-height:1.52;max-width:820px;text-wrap:pretty}
+.dark .body{color:var(--du-cream-72)} .light .body{color:var(--du-ink-72)}
+.meta{padding-top:28px;display:flex;justify-content:space-between;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.18em;text-transform:uppercase}
+.dark .meta{border-top:1px solid var(--du-cream-14);color:var(--du-cream-72)}
+.light .meta{border-top:1px solid var(--du-ink-14);color:var(--du-ink-72)}
+
+/* paper pages: the proposal grammar */
+.runhead{display:flex;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--du-ink-14);font-family:var(--du-font-mono);font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--du-ink-72);margin-top:40px}
+.secno{align-self:flex-start;font-family:var(--du-font-mono);font-size:20px;font-weight:500;letter-spacing:.12em;color:var(--du-crimson);padding-bottom:6px;border-bottom:2px solid var(--du-crimson)}
+.defs{display:flex;flex-direction:column}
+.def{display:grid;grid-template-columns:290px 1fr;gap:24px;padding:30px 0;border-top:1px solid var(--du-ink-14);align-items:baseline}
+.def:last-child{border-bottom:1px solid var(--du-ink-14)}
+.def .lab{display:flex;align-items:center;gap:14px;font-family:var(--du-font-mono);font-size:17px;letter-spacing:.14em;text-transform:uppercase;color:var(--du-ink-72)}
+.def .lab:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--du-crimson);flex:none}
+.def .val{font-size:30px;line-height:1.35;color:var(--du-ink)}
+.def .val small{display:block;font-size:22px;color:var(--du-ink-62);margin-top:6px}
+.stat{font-weight:700;letter-spacing:-.05em;line-height:.9;color:var(--du-crimson)}
+.callout{background:var(--du-black);color:var(--du-cream);border-radius:14px;padding:36px 40px}
+.callout .lab{font-family:var(--du-font-mono);font-size:16px;letter-spacing:.2em;text-transform:uppercase;color:var(--du-cream-72);margin-bottom:14px}
+.callout p{font-size:32px;line-height:1.35;font-weight:500;letter-spacing:-.01em}
+
+.list{display:flex;flex-direction:column}
+.li{display:grid;grid-template-columns:70px 1fr;align-items:baseline;padding:22px 0;border-top:1px solid var(--du-cream-14)}
+.li:last-child{border-bottom:1px solid var(--du-cream-14)}
+.li span{font-family:var(--du-font-mono);font-size:17px;letter-spacing:.12em;color:var(--du-cream-72)}
+.li b{font-size:36px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.li b small{font-weight:400;font-size:24px;color:var(--du-cream-72);letter-spacing:0;margin-left:10px}
+.q{display:grid;grid-template-columns:70px 1fr;align-items:baseline;padding:18px 0;border-top:1px solid var(--du-cream-14)}
+.q span{font-family:var(--du-font-mono);font-size:17px;letter-spacing:.12em;color:var(--du-cream-72)}
+.q b{font-size:34px;font-weight:600;letter-spacing:-.02em}
+.q b small{display:block;font-weight:400;font-size:23px;color:var(--du-cream-72);letter-spacing:0;margin-top:4px}
+.pill{display:inline-flex;align-items:center;gap:14px;background:var(--du-crimson);color:var(--du-white);border-radius:999px;padding:24px 40px;font-size:28px;font-weight:600}
+.disc{width:70px;height:70px;border-radius:50%;background:var(--du-crimson);color:var(--du-white);display:flex;align-items:center;justify-content:center;font-size:30px}
+</style>
+</head>
+<body>
+
+<!-- 01 · escuro · capa: a data -->
+<section class="s dark" id="s1">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="glow" style="background:radial-gradient(115% 62% at 84% 12%,rgba(176,14,34,.46) 0%,rgba(10,3,5,0) 68%)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">01/06</span></div>
+  <div class="eyebrow" style="margin-top:104px"><span class="dot"></span>European Accessibility Act · Portugal</div>
+  <div style="margin-top:40px;font-size:268px;font-weight:700;letter-spacing:-.06em;line-height:.84;margin-left:-12px">28.06<span style="color:var(--du-red)">.</span><br>2025</div>
+  <div class="hl" style="margin-top:auto">
+    <div>Desde esta data,</div>
+    <div class="c">a acessibilidade</div>
+    <div class="r">digital é lei.</div>
+  </div>
+  <div class="meta" style="margin-top:56px"><span>Desliza →</span><span>digiup.me</span></div>
+</section>
+
+<!-- 02 · claro · o que mudou -->
+<section class="s light" id="s2">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="counter">02/06</span></div>
+  <div class="runhead"><span>digiUP — EAA explicado</span><span>Nota técnica</span></div>
+  <div class="secno" style="margin-top:72px">01</div>
+  <div class="h" style="margin-top:22px;font-size:72px">O que mudou.</div>
+  <p class="body" style="margin-top:22px">Uma diretiva europeia passou a exigir que produtos e serviços digitais sejam acessíveis.</p>
+  <div class="defs" style="margin-top:auto">
+    <div class="def"><span class="lab">Diretiva</span><span class="val">(UE) 2019/882<small>European Accessibility Act</small></span></div>
+    <div class="def"><span class="lab">Em Portugal</span><span class="val">Decreto-Lei n.º 82/2022</span></div>
+    <div class="def"><span class="lab">Aplica-se desde</span><span class="val">28 de junho de 2025</span></div>
+    <div class="def"><span class="lab">Norma técnica</span><span class="val">EN 301 549<small>que remete para as WCAG 2.1, nível AA</small></span></div>
+  </div>
+</section>
+
+<!-- 03 · escuro · quem está abrangido -->
+<section class="s dark" id="s3">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">03/06</span></div>
+  <div class="eyebrow" style="margin-top:88px">— 02 · Quem está abrangido</div>
+  <div class="h" style="margin-top:26px;font-size:72px;max-width:900px">Se vende a consumidores, provavelmente é consigo.</div>
+  <div class="list" style="margin-top:auto">
+    <div class="li"><span>01</span><b>Lojas online</b></div>
+    <div class="li"><span>02</span><b>Banca <small>para particulares</small></b></div>
+    <div class="li"><span>03</span><b>Transportes <small>sites, apps e bilhetes</small></b></div>
+    <div class="li"><span>04</span><b>Comunicações eletrónicas</b></div>
+    <div class="li"><span>05</span><b>Livros eletrónicos</b></div>
+    <div class="li"><span>06</span><b>Terminais <small>multibanco, bilhética, check-in</small></b></div>
+  </div>
+</section>
+
+<!-- 04 · claro · quem está isento -->
+<section class="s light" id="s4">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="counter">04/06</span></div>
+  <div class="runhead"><span>digiUP — EAA explicado</span><span>Nota técnica</span></div>
+  <div class="secno" style="margin-top:72px">03</div>
+  <div class="h" style="margin-top:22px;font-size:72px">Quem está isento.</div>
+  <p class="body" style="margin-top:22px">Só as microempresas que prestam serviços. Têm de cumprir as duas condições.</p>
+  <div style="margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid var(--du-ink)">
+    <div style="padding:34px 30px 34px 0;border-right:1px solid var(--du-ink-14)"><div class="stat" style="font-size:150px">&lt;10</div><div class="def" style="border:0;padding:16px 0 0;display:block"><span class="lab">pessoas</span></div></div>
+    <div style="padding:34px 0 34px 34px"><div class="stat" style="font-size:150px">2 M€</div><div class="def" style="border:0;padding:16px 0 0;display:block"><span class="lab">volume de negócios ou balanço anual, no máximo</span></div></div>
+  </div>
+  <div class="callout" style="margin-top:56px">
+    <div class="lab">Atenção</div>
+    <p>Tem 10 ou mais pessoas e vende a consumidores? Então o seu site está abrangido.</p>
+  </div>
+  <div class="meta" style="margin-top:auto"><span>Decreto-Lei n.º 82/2022</span><span>Microempresas · Serviços</span></div>
+</section>
+
+<!-- 05 · escuro · nível AA em 3D -->
+<section class="s dark" id="s5">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="glow" style="background:radial-gradient(90% 45% at 50% 30%,rgba(176,14,34,.38) 0%,rgba(10,3,5,0) 70%)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">05/06</span></div>
+  <img src="aa-3d.png" alt="" style="position:absolute;left:120px;top:150px;width:840px">
+  <div style="margin-top:auto">
+    <div class="eyebrow">— 04 · O alvo</div>
+    <div class="h" style="margin-top:22px;font-size:70px">O nível exigido é o AA.</div>
+    <div style="margin-top:30px">
+      <div class="q"><span>01</span><b>Dá para perceber? <small>Ver, ouvir ou ler de outra forma.</small></b></div>
+      <div class="q"><span>02</span><b>Dá para usar? <small>Com teclado, toque ou voz.</small></b></div>
+      <div class="q"><span>03</span><b>Dá para entender? <small>Linguagem e funcionamento claros.</small></b></div>
+      <div class="q" style="border-bottom:1px solid var(--du-cream-14)"><span>04</span><b>Aguenta? <small>Em vários ecrãs, browsers e leitores de ecrã.</small></b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · claro · CTA -->
+<section class="s light" id="s6">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="counter">06/06</span></div>
+  <div style="margin:auto 0;display:flex;flex-direction:column;gap:38px;align-items:flex-start">
+    <div class="eyebrow" style="color:var(--du-ink-72)"><span class="dot" style="background:var(--du-crimson)"></span>Próximo passo</div>
+    <div class="h" style="font-size:84px">O seu site cumpre?</div>
+    <p class="body">Envie «EAA» por mensagem. Analisamos o seu site e dizemos-lhe o que corrigir primeiro.</p>
+    <div style="display:flex;align-items:center;gap:22px"><span class="pill">Vamos conversar <span>→</span></span><span class="disc">↗</span></div>
+  </div>
+  <p style="font-size:20px;line-height:1.5;color:var(--du-ink-62);margin-bottom:26px;max-width:820px">Resumo informativo, não é aconselhamento jurídico. Fontes: Diretiva (UE) 2019/882 e Decreto-Lei n.º 82/2022.</p>
+  <div class="meta"><span>digiup.me</span><span>Amarante, PT</span></div>
+</section>
+
+</body>
+</html>

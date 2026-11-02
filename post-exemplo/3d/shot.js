@@ -1,7 +1,7 @@
 const { chromium } = require('playwright');
 (async()=>{
   const b=await chromium.launch({args:['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
-  for (const [mode,w,h] of [['hero',2000,1600],['field',2160,1350]]){
+  for (const [mode,w,h] of (process.argv[2]?JSON.parse(process.argv[2]):[['hero',2000,1600],['field',2160,1350]])){
     const p=await b.newPage({viewport:{width:w,height:h}});
     p.on('console',m=>console.log(mode,m.text())); p.on('pageerror',e=>console.log(mode,'ERR',e.message));
     await p.goto(`http://localhost:8765/scene.html?mode=${mode}&w=${w}&h=${h}`);

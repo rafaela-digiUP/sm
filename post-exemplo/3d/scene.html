@@ -9,6 +9,9 @@ import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { TTFLoader } from 'three/addons/loaders/TTFLoader.js';
+import { Font } from 'three/addons/loaders/FontLoader.js';
+import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
 const P = new URLSearchParams(location.search);
 const mode = P.get('mode') || 'hero';
@@ -56,7 +59,19 @@ function keycap(u = 1, text = '', sub = '', opts = {}) {
 }
 
 let camera;
-if (mode === 'hero') {
+if (mode === 'aa') {
+  const json = await new Promise((res, rej) => new TTFLoader().load('./lexend-700.ttf', res, undefined, rej));
+  const font = new Font(json);
+  const geo = new TextGeometry('AA', { font, size: 1.6, height: 0.55, curveSegments: 16, bevelEnabled: true, bevelThickness: 0.06, bevelSize: 0.035, bevelSegments: 6 });
+  geo.computeBoundingBox(); geo.center();
+  const m = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ color: 0x0d0607, roughness: 0.3, clearcoat: 0.8, clearcoatRoughness: 0.18 }));
+  m.rotation.set(-0.12, -0.5, 0.04); m.castShadow = true; scene.add(m);
+  camera = new THREE.PerspectiveCamera(28, W / H, 0.1, 100);
+  camera.position.set(-0.6, 0.7, 6.2); camera.lookAt(0.1, 0, 0);
+  const rim = new THREE.RectAreaLight(RED, 55, 4, 1.2); rim.position.set(2.6, 1.0, -2.2); rim.lookAt(0, 0, 0); scene.add(rim);
+  const rim2 = new THREE.RectAreaLight(0xff2b3b, 22, 4, 0.8); rim2.position.set(-2.8, -1.2, -1.5); rim2.lookAt(0, 0, 0); scene.add(rim2);
+  const key = new THREE.SpotLight(0xffe2d6, 10, 14, 0.5, 0.9, 1.6); key.position.set(-3.2, 3.4, 3.6); key.target.position.set(0, 0, 0); scene.add(key, key.target);
+} else if (mode === 'hero') {
   // one giant Tab key, 3/4 view, red rim light
   const k = keycap(1.6, 'Tab', '⇥'); k.rotation.y = -0.42; scene.add(k);
   camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 100);
