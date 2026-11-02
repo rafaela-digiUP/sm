@@ -1,0 +1,103 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600&family=JetBrains+Mono:wght@500&display=block" rel="stylesheet">
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from 'three';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const P = new URLSearchParams(location.search);
+const mode = P.get('mode') || 'hero';
+const W = +P.get('w') || 2000, H = +P.get('h') || 1600;
+await document.fonts.load('600 80px Lexend'); await document.fonts.load('500 40px "JetBrains Mono"');
+
+RectAreaLightUniformsLib.init();
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(W, H);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+const pmrem = new THREE.PMREMGenerator(renderer);
+const env = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+scene.environment = env;
+scene.environmentIntensity = 0.12;
+
+const RED = 0xe8112d, CREAM = '#f7efe9';
+const capMat = () => new THREE.MeshPhysicalMaterial({ color: 0x0d0607, roughness: 0.34, metalness: 0.0, clearcoat: 0.6, clearcoatRoughness: 0.25, sheen: 0.3, sheenColor: new THREE.Color(0x5a0a14) });
+
+function legendTexture(text, sub, w, h, color = CREAM) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const g = c.getContext('2d');
+  g.fillStyle = color; g.textBaseline = 'top';
+  g.font = `600 ${Math.round(h * 0.26)}px Lexend`;
+  g.fillText(text, w * 0.11, h * 0.13);
+  if (sub) { g.font = `500 ${Math.round(h * 0.2)}px "JetBrains Mono"`; g.fillText(sub, w * 0.11, h * 0.56); }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; return t;
+}
+
+function keycap(u = 1, text = '', sub = '', opts = {}) {
+  const g = new THREE.Group();
+  const base = new THREE.Mesh(new RoundedBoxGeometry(u - 0.08, 0.42, 0.92, 8, 0.11), capMat());
+  base.position.y = 0.21; base.castShadow = true; base.receiveShadow = true; g.add(base);
+  if (text || sub) {
+    const tw = u - 0.24, th = 0.72;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(tw, th),
+      new THREE.MeshBasicMaterial({ map: legendTexture(text, sub, Math.round(512 * tw / th), 512, opts.legend || CREAM), transparent: true, toneMapped: false, opacity: opts.legendOpacity ?? 0.92 }));
+    m.rotation.x = -Math.PI / 2; m.position.set(0, 0.4205, 0); g.add(m);
+  }
+  return g;
+}
+
+let camera;
+if (mode === 'hero') {
+  // one giant Tab key, 3/4 view, red rim light
+  const k = keycap(1.6, 'Tab', '⇥'); k.rotation.y = -0.42; scene.add(k);
+  camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 100);
+  camera.position.set(-0.75, 2.05, 2.25); camera.lookAt(0.12, 0.15, 0);
+  const rim = new THREE.RectAreaLight(RED, 34, 3, 0.6); rim.position.set(1.7, 0.7, -1.6); rim.lookAt(0, 0.4, 0); scene.add(rim);
+  const rim2 = new THREE.RectAreaLight(0xff2b3b, 14, 2, 1); rim2.position.set(-2.2, 0.6, -1.4); rim2.lookAt(0, 0.4, 0); scene.add(rim2);
+  const key = new THREE.SpotLight(0xffe2d6, 7, 12, 0.5, 0.9, 1.6); key.position.set(-3.2, 3.2, 1.2); key.target.position.set(0, 0.4, 0); key.castShadow = true; scene.add(key, key.target);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.ShadowMaterial({ opacity: 0.55 })); floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+} else {
+  // a keyboard field at a low angle, receding into the dark
+  const rows = [
+    [['Esc', ''], ['', '1'], ['', '2'], ['', '3'], ['', '4'], ['', '5'], ['', '6'], ['', '7'], ['', '8']],
+    [['Tab', '⇥', 1.5], ['Q'], ['W'], ['E'], ['R'], ['T'], ['Y'], ['U'], ['I']],
+    [['Caps', '', 1.75], ['A'], ['S'], ['D'], ['F'], ['G'], ['H'], ['J'], ['K']],
+    [['Shift', '', 2.25], ['Z'], ['X'], ['C'], ['V'], ['B'], ['N'], ['M'], [',']],
+    [['', '', 1.25], ['', '', 1.25], ['', '', 1.25], ['Espaço', '', 6.25]],
+  ];
+  const kb = new THREE.Group();
+  rows.forEach((row, r) => {
+    let x = r === 0 ? 0 : 0;
+    row.forEach(([t, s, u = 1]) => {
+      const hl = t === 'Tab';
+      const k = keycap(u, t, s || '', { legendOpacity: hl ? 1 : 0.55 });
+      k.position.set(x + u / 2, 0, r * 1.0); kb.add(k);
+      if (hl) {
+        const ring = new THREE.Mesh(new RoundedBoxGeometry(u + 0.02, 0.07, 1.0, 4, 0.03), new THREE.MeshBasicMaterial({ color: RED, toneMapped: false }));
+        ring.position.set(x + u / 2, 0.035, r); kb.add(ring);
+        const glow = new THREE.PointLight(RED, 4, 2.2, 1.6); glow.position.set(x + u / 2, 0.9, r - 0.15); kb.add(glow);
+      }
+      x += u;
+    });
+  });
+  kb.position.set(-6.2, 0, -2.6); scene.add(kb);
+  camera = new THREE.PerspectiveCamera(28, W / H, 0.1, 100);
+  camera.position.set(-1.6, 3.0, 4.6); camera.lookAt(-3.6, 0.2, -1.1);
+  const rim = new THREE.RectAreaLight(RED, 30, 12, 1.2); rim.position.set(-1, 1.2, -6.5); rim.lookAt(-2, 0.3, 0); scene.add(rim);
+  const key = new THREE.SpotLight(0xffe2d6, 30, 14, 0.42, 0.9, 1.6); key.position.set(-5.5, 5.0, 2.4); key.target.position.set(-4.4, 0.4, -1.2); key.castShadow = true; scene.add(key, key.target);
+  const plate = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.MeshStandardMaterial({ color: 0x0a0305, roughness: 0.9 })); plate.rotation.x = -Math.PI / 2; plate.receiveShadow = true; scene.add(plate);
+  scene.fog = new THREE.Fog(0x0a0305, 5.5, 13);
+}
+renderer.render(scene, camera);
+window.__done = true;
+</script>
+</body></html>

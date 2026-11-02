@@ -4,144 +4,158 @@
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
 <style>
-/* digiUP Design System tokens (tokens.json) */
+/* digiUP Design System tokens + one new device: the focus ring (#E8112D, 4px, offset 10px) */
 :root{
-  --du-black:#0a0305; --du-black-card:#170a0d; --du-cream:#f7efe9; --du-white:#ffffff;
-  --du-red:#e8112d; --du-crimson:#b00e22;
-  --du-cream-86:rgba(247,239,233,.86); --du-cream-72:rgba(247,239,233,.72); --du-cream-68:rgba(247,239,233,.68);
-  --du-cream-55:rgba(247,239,233,.55); --du-cream-28:rgba(247,239,233,.28); --du-cream-14:rgba(247,239,233,.14); --du-cream-10:rgba(247,239,233,.1);
+  --du-black:#0a0305; --du-black-card:#170a0d; --du-cream:#f7efe9; --du-white:#ffffff; --du-red:#e8112d;
+  --du-cream-86:rgba(247,239,233,.86); --du-cream-72:rgba(247,239,233,.72); --du-cream-55:rgba(247,239,233,.55);
+  --du-cream-28:rgba(247,239,233,.28); --du-cream-14:rgba(247,239,233,.14); --du-cream-10:rgba(247,239,233,.1);
   --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
-  --du-glow-corner:radial-gradient(115% 62% at 84% 12%,rgba(176,14,34,.46) 0%,rgba(10,3,5,0) 68%);
-  --du-glow-soft:radial-gradient(105% 55% at 90% 8%,rgba(176,14,34,.35) 0%,rgba(10,3,5,0) 62%);
-  --du-glow-low:radial-gradient(110% 60% at 12% 96%,rgba(176,14,34,.42) 0%,rgba(10,3,5,0) 66%);
+  --ring:0 0 0 4px var(--du-red), 0 0 38px 6px rgba(232,17,45,.45);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#17181a;font-family:var(--du-font-sans);display:flex;flex-wrap:wrap;gap:48px;padding:56px;align-items:flex-start}
 .s{position:relative;width:1080px;height:1350px;flex-shrink:0;overflow:hidden;isolation:isolate;background:var(--du-black);color:var(--du-cream);display:flex;flex-direction:column;padding:76px 82px 82px}
-.net{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.net{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .glow{position:absolute;inset:0;z-index:-1}
-.top{display:flex;justify-content:space-between;align-items:center}
+.top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
 .top img{width:118px;height:auto}
-.counter{font-family:var(--du-font-mono);font-size:16px;letter-spacing:.16em;color:var(--du-cream-55)}
+.tabcount{display:flex;align-items:center;gap:14px;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.16em;color:var(--du-cream-72)}
+.tabcount b{font-weight:500;color:var(--du-cream);border:1px solid var(--du-cream-28);border-bottom-width:3px;border-radius:8px;padding:4px 10px;letter-spacing:.08em}
 .eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.2em;text-transform:uppercase;color:var(--du-cream-72)}
 .eyebrow .dot{width:11px;height:11px;border-radius:50%;background:var(--du-red)}
 .h{font-weight:700;letter-spacing:-.035em;line-height:1.04}
 .hl{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
-.hl > div{font-size:76px;font-weight:700;letter-spacing:-.035em;line-height:1.08}
+.hl > div{font-size:var(--fs,80px);font-weight:700;letter-spacing:-.035em;line-height:1.08}
 .hl .c{background:var(--du-cream);color:var(--du-black);padding:2px 20px;border-radius:6px}
 .hl .r{background:var(--du-red);color:var(--du-white);padding:2px 20px;border-radius:6px}
-.body{font-size:27px;line-height:1.52;color:var(--du-cream-72);max-width:780px;text-wrap:pretty}
-.meta{padding-top:30px;border-top:1px solid var(--du-cream-14);display:flex;justify-content:space-between;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:var(--du-cream-72)}
-.keys{display:flex;flex-wrap:wrap;gap:16px}
-.key{font-family:var(--du-font-mono);font-weight:500;font-size:24px;letter-spacing:.06em;border:1px solid var(--du-cream-28);border-bottom-width:4px;border-radius:12px;padding:14px 22px;color:var(--du-cream)}
-.rows{display:flex;flex-direction:column}
-.row{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:center;padding:28px 0;border-top:1px solid var(--du-cream-14)}
-.row:last-child{border-bottom:1px solid var(--du-cream-14)}
-.row .key{justify-self:start;font-size:22px;padding:10px 18px}
-.row span{font-size:28px;line-height:1.35;color:var(--du-cream-86)}
-.cards{display:flex;flex-direction:column;gap:22px}
-.card{background:var(--du-black-card);border:1px solid var(--du-cream-10);border-radius:16px;padding:46px 42px;display:grid;grid-template-columns:96px 1fr;align-items:center}
-.card .n{font-size:52px;font-weight:700;letter-spacing:-.05em;line-height:.9;color:var(--du-red)}
-.card p{font-size:40px;font-weight:600;letter-spacing:-.015em;line-height:1.2}
-.fix{display:grid;grid-template-columns:34px 1fr;gap:10px 20px;padding:30px 0;border-top:1px solid var(--du-cream-14)}
+.body{font-size:27px;line-height:1.52;color:var(--du-cream-72);max-width:800px;text-wrap:pretty}
+.meta{padding-top:28px;border-top:1px solid var(--du-cream-14);display:flex;justify-content:space-between;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.18em;text-transform:uppercase;color:var(--du-cream-72);position:relative;z-index:2}
+.focusnote{font-family:var(--du-font-mono);font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--du-red)}
+.focusnote.off{color:var(--du-cream-72)}
+
+/* form mock: the system's one field type, underlined */
+.form{background:var(--du-black-card);border:1px solid var(--du-cream-10);border-radius:20px;padding:44px 48px;display:flex;flex-direction:column;gap:34px}
+.field label{display:block;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--du-cream-72);margin-bottom:12px}
+.field .in{font-size:30px;color:var(--du-cream-55);padding:6px 4px 14px;border-bottom:1px solid var(--du-cream-28)}
+.field.focus .in{color:var(--du-cream)}
+.field.focus{border-radius:10px;box-shadow:var(--ring);outline-offset:10px;padding:14px 16px;margin:-14px -16px}
+.btn{align-self:flex-start;display:inline-flex;align-items:center;gap:14px;background:var(--du-red);color:var(--du-white);border-radius:999px;padding:20px 34px;font-size:24px;font-weight:600}
+.caret{display:inline-block;width:3px;height:30px;background:var(--du-cream);vertical-align:-5px;margin-left:2px}
+
+.keyrow{display:flex;flex-wrap:wrap;gap:12px 26px;font-size:24px;color:var(--du-cream-86);line-height:1.3}
+.keyrow span{display:flex;align-items:center;gap:12px}
+.k{font-style:normal;font-family:var(--du-font-mono);font-weight:500;font-size:20px;letter-spacing:.06em;border:1px solid var(--du-cream-28);border-bottom-width:3px;border-radius:10px;padding:6px 12px;color:var(--du-cream)}
+
+.code{font-family:var(--du-font-mono);font-size:30px;line-height:1.6;background:var(--du-black-card);border:1px solid var(--du-cream-10);border-radius:16px;padding:30px 36px;color:var(--du-cream-86)}
+.code .sel{color:var(--du-cream)} .code .p{color:var(--du-cream-72)} .code .v{color:#ff8a96}
+.code del{text-decoration:line-through;text-decoration-color:var(--du-red);text-decoration-thickness:4px;color:var(--du-cream-72)}
+.fix{display:grid;grid-template-columns:34px 1fr;gap:8px 20px;padding:26px 0;border-top:1px solid var(--du-cream-14)}
 .fix:last-child{border-bottom:1px solid var(--du-cream-14)}
-.fix i{width:11px;height:11px;border-radius:50%;background:var(--du-red);margin-top:16px}
-.fix b{font-size:36px;font-weight:600;letter-spacing:-.015em;line-height:1.2}
-.fix span{grid-column:2;font-size:26px;line-height:1.45;color:var(--du-cream-72)}
-.pill{display:inline-flex;align-items:center;gap:14px;background:var(--du-red);color:var(--du-white);border-radius:999px;padding:22px 36px;font-size:26px;font-weight:600}
-.disc{width:66px;height:66px;border-radius:50%;background:var(--du-red);color:var(--du-white);display:flex;align-items:center;justify-content:center;font-size:28px}
-.note{font-size:24px;line-height:1.5;color:var(--du-cream-72);border-top:1px solid var(--du-cream-14);padding-top:26px}
+.fix i{width:11px;height:11px;border-radius:50%;background:var(--du-red);margin-top:15px}
+.fix b{font-size:34px;font-weight:600;letter-spacing:-.015em;line-height:1.2}
+.fix span{grid-column:2;font-size:25px;line-height:1.45;color:var(--du-cream-72)}
+.pill{display:inline-flex;align-items:center;gap:14px;background:var(--du-red);color:var(--du-white);border-radius:999px;padding:24px 40px;font-size:28px;font-weight:600}
+.pill.focus{box-shadow:0 0 0 6px var(--du-black),0 0 0 10px var(--du-cream),0 0 44px 10px rgba(232,17,45,.5)}
 </style>
 </head>
 <body>
 
-<!-- 01 Capa -->
+<!-- 01 Capa: a tecla Tab com o anel de foco -->
 <section class="s" id="s1">
   <img class="net" src="net-subtle-1080x1350.svg" alt="">
-  <div class="glow" style="background:var(--du-glow-corner)"></div>
-  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">01/06</span></div>
-  <div class="eyebrow" style="margin-top:104px"><span class="dot"></span>Acessibilidade digital · Desafio</div>
-  <div class="hl" style="margin-top:38px">
-    <div>Dois minutos</div>
-    <div class="c">sem rato</div>
-    <div class="r">no seu site.</div>
+  <div class="glow" style="background:radial-gradient(80% 50% at 60% 42%,rgba(176,14,34,.42) 0%,rgba(10,3,5,0) 70%)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="tabcount"><b>TAB</b>01/06</span></div>
+  <div style="position:absolute;left:-40px;top:206px;width:1180px;transform:rotate(-7deg);z-index:1">
+    <img src="tecla-tab-crop.png" alt="" style="width:100%;display:block">
+    <div style="position:absolute;left:30px;top:-14px;width:1010px;height:520px;border-radius:64px;box-shadow:0 0 0 5px var(--du-red),0 0 60px 10px rgba(232,17,45,.45)"></div>
   </div>
-  <p class="body" style="margin-top:38px">Pouse o rato e tente preencher um formulário só com o teclado.</p>
-  <div class="keys" style="margin-top:44px">
-    <span class="key">TAB</span><span class="key">SHIFT + TAB</span><span class="key">ENTER</span><span class="key">ESPAÇO</span><span class="key">← →</span>
+  <div style="margin-top:auto;position:relative;z-index:2">
+    <div class="eyebrow"><span class="dot"></span>Acessibilidade digital · Desafio</div>
+    <div class="hl" style="margin-top:30px">
+      <div>Dois minutos</div>
+      <div class="c">sem rato</div>
+      <div class="r">no seu site.</div>
+    </div>
   </div>
-  <div class="meta" style="margin-top:auto"><span>Desliza →</span><span>digiup.me</span></div>
+  <div class="meta" style="margin-top:44px"><span>Cada deslize é um Tab →</span><span>digiup.me</span></div>
 </section>
 
-<!-- 02 Instruções -->
+<!-- 02 O desafio: foco no primeiro campo -->
 <section class="s" id="s2">
   <img class="net" src="net-subtle-1080x1350.svg" alt="">
-  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">02/06</span></div>
-  <div class="eyebrow" style="margin-top:88px">— O desafio</div>
-  <div class="h" style="margin-top:30px;font-size:76px">Pouse o rato.</div>
-  <p class="body" style="margin-top:26px">Abra um formulário real do seu site — contacto, inscrição ou checkout — e use só estas teclas.</p>
-  <div class="rows" style="margin-top:auto">
-    <div class="row"><span class="key">TAB</span><span>Avança para o elemento seguinte.</span></div>
-    <div class="row"><span class="key">SHIFT + TAB</span><span>Volta ao elemento anterior.</span></div>
-    <div class="row"><span class="key">ENTER</span><span>Abre um link ou carrega num botão.</span></div>
-    <div class="row"><span class="key">ESPAÇO</span><span>Marca uma caixa ou carrega num botão.</span></div>
-    <div class="row"><span class="key">← →</span><span>Escolhe uma opção numa lista.</span></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="tabcount"><b>TAB</b>02/06</span></div>
+  <div class="eyebrow" style="margin-top:80px">— O desafio</div>
+  <div class="h" style="margin-top:26px;font-size:76px">Pouse o rato.</div>
+  <p class="body" style="margin-top:22px">Abra um formulário real do seu site e preencha-o só com o teclado.</p>
+  <div class="form" style="margin-top:46px">
+    <div class="field focus"><label>Nome</label><div class="in">Ana Ferreira<span class="caret"></span></div></div>
+    <div class="field"><label>Email</label><div class="in">nome@empresa.pt</div></div>
+    <div class="btn">Enviar pedido <span>→</span></div>
+  </div>
+  <div class="focusnote" style="margin-top:22px">● Foco no campo «Nome»</div>
+  <div class="keyrow" style="margin-top:auto">
+    <span><i class="k">TAB</i>avança</span><span><i class="k">SHIFT+TAB</i>volta</span><span><i class="k">ENTER</i>ativa</span><span><i class="k">← →</i>escolhem</span>
   </div>
 </section>
 
-<!-- 03 Perguntas -->
+<!-- 03 O foco desaparece -->
 <section class="s" id="s3">
   <img class="net" src="net-subtle-1080x1350.svg" alt="">
-  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">03/06</span></div>
-  <div class="eyebrow" style="margin-top:88px">— Depois, responda</div>
-  <div class="h" style="margin-top:30px;font-size:76px">Três perguntas.</div>
-  <div class="cards" style="margin:auto 0">
-    <div class="card"><span class="n">01</span><p>Em que ponto se perdeu?</p></div>
-    <div class="card"><span class="n">02</span><p>Sabia sempre onde estava o foco?</p></div>
-    <div class="card"><span class="n">03</span><p>O leitor de ecrã disse algo útil nas imagens e nos botões?</p></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="tabcount"><b>TAB</b>03/06</span></div>
+  <div class="eyebrow" style="margin-top:80px">— Mais um Tab</div>
+  <div class="h" style="margin-top:26px;font-size:76px">Onde está o foco?</div>
+  <div class="form" style="margin-top:46px">
+    <div class="field"><label>Nome</label><div class="in" style="color:var(--du-cream)">Ana Ferreira</div></div>
+    <div class="field"><label>Email</label><div class="in">nome@empresa.pt</div></div>
+    <div class="btn">Enviar pedido <span>→</span></div>
   </div>
-  <p class="note">Leitor de ecrã: o VoiceOver já vem no Mac e no iPhone. No Windows, o NVDA é gratuito.</p>
+  <div class="focusnote off" style="margin-top:22px">○ Foco: invisível</div>
+  <p class="body" style="margin-top:auto">Carregou no Tab e nada se vê. Acontece quando o código apaga o contorno:</p>
+  <div class="code" style="margin-top:22px"><span class="sel">button:focus</span> {<br>&nbsp;&nbsp;<del><span class="p">outline</span>: none;</del><br>}</div>
 </section>
 
-<!-- 04 Frase -->
-<section class="s" id="s4">
-  <img class="net" src="net-subtle-1080x1350.svg" alt="">
-  <div class="glow" style="background:var(--du-glow-low)"></div>
-  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">04/06</span></div>
-  <div class="eyebrow" style="margin-top:88px">— A diferença</div>
-  <div class="hl" style="margin:auto 0">
+<!-- 04 Frase sobre o teclado -->
+<section class="s" id="s4" style="padding-top:76px">
+  <img src="teclado.png" alt="" style="position:absolute;left:-640px;bottom:-150px;width:1960px;z-index:-2">
+  <div class="glow" style="background:linear-gradient(180deg,rgba(10,3,5,1) 30%,rgba(10,3,5,.82) 52%,rgba(10,3,5,.25) 78%,rgba(10,3,5,.55) 100%)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="tabcount"><b>TAB</b>04/06</span></div>
+  <div class="eyebrow" style="margin-top:80px">— A diferença</div>
+  <div class="hl" style="margin-top:34px;--fs:72px">
     <div>Para nós, foram</div>
     <div>dois minutos chatos.</div>
-    <div class="c" style="margin-top:28px">Para algumas pessoas,</div>
+    <div class="c" style="margin-top:24px">Para algumas pessoas,</div>
     <div class="r">é todos os dias.</div>
-    <p class="body" style="margin-top:40px">Em quase todos os sites. A barreira raramente está na pessoa — está quase sempre no que desenhámos.</p>
   </div>
-  <div class="meta"><span>Formação interna · digiUP</span><span>Amarante, PT</span></div>
+  <p class="body" style="margin-top:34px">Em quase todos os sites. A barreira raramente está na pessoa — está no que desenhámos.</p>
 </section>
 
 <!-- 05 O que resolve -->
 <section class="s" id="s5">
   <img class="net" src="net-subtle-1080x1350.svg" alt="">
-  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">05/06</span></div>
-  <div class="eyebrow" style="margin-top:88px">— O que resolve</div>
-  <div class="h" style="margin-top:30px;font-size:70px;max-width:860px">Três correções que resolvem quase tudo.</div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="tabcount"><b>TAB</b>05/06</span></div>
+  <div class="eyebrow" style="margin-top:80px">— O que resolve</div>
+  <div class="h" style="margin-top:26px;font-size:70px;max-width:880px">Três linhas de código e duas regras.</div>
+  <div class="code" style="margin-top:44px"><span class="sel">:focus-visible</span> {<br>&nbsp;&nbsp;<span class="p">outline</span>: <span class="v">3px solid #E8112D</span>;<br>&nbsp;&nbsp;<span class="p">outline-offset</span>: <span class="v">4px</span>;<br>}</div>
   <div style="margin-top:auto">
-    <div class="fix"><i></i><b>Foco sempre visível.</b><span>Nunca retirar o contorno sem pôr outro destaque no lugar.</span></div>
     <div class="fix"><i></i><b>Botões que dizem o que fazem.</b><span>«Enviar pedido», não «Clique aqui» nem um ícone sem nome.</span></div>
     <div class="fix"><i></i><b>Tab na ordem da leitura.</b><span>De cima para baixo, sem saltos nem armadilhas em menus e janelas.</span></div>
   </div>
+  <div class="meta" style="margin-top:40px"><span>WCAG 2.2 · 2.4.7 Foco visível</span><span>Nível AA</span></div>
 </section>
 
-<!-- 06 CTA -->
+<!-- 06 CTA: o foco chega ao botão -->
 <section class="s" id="s6">
   <img class="net" src="net-subtle-1080x1350.svg" alt="">
-  <div class="glow" style="background:var(--du-glow-soft)"></div>
-  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">06/06</span></div>
+  <div class="glow" style="background:radial-gradient(105% 55% at 90% 8%,rgba(176,14,34,.35) 0%,rgba(10,3,5,0) 62%)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="tabcount"><b>TAB</b>06/06</span></div>
   <div style="margin:auto 0;display:flex;flex-direction:column;gap:38px;align-items:flex-start">
-    <div class="eyebrow"><span class="dot"></span>A sua vez</div>
-    <div class="h" style="font-size:72px;max-width:860px">Onde é que se perdeu?</div>
-    <p class="body">Faça o teste e conte-nos nos comentários. Se quiser saber o que corrigir primeiro, analisamos o seu site.</p>
-    <div style="display:flex;align-items:center;gap:22px"><span class="pill">Vamos conversar <span>→</span></span><span class="disc">↗</span></div>
+    <div class="eyebrow"><span class="dot"></span>Chegou ao fim só com Tab</div>
+    <div class="h" style="font-size:76px;max-width:880px">Onde é que se perdeu?</div>
+    <p class="body">Faça o teste no seu site e conte-nos nos comentários. Se quiser saber o que corrigir primeiro, analisamos o seu site.</p>
+    <div style="display:flex;flex-direction:column;gap:22px;margin-top:10px">
+      <span class="pill focus">Vamos conversar <span>→</span></span>
+      <span class="focusnote">● Foco no botão. Enter para continuar.</span>
+    </div>
   </div>
   <div class="meta"><span>digiup.me</span><span>Amarante, PT</span></div>
 </section>
