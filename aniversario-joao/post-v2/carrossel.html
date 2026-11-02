@@ -17,28 +17,32 @@ body{background:#17181a;font-family:var(--du-font-sans);padding:56px}
 .panel{position:absolute;left:60px;top:84px;right:60px;bottom:84px;background:var(--du-black)}
 .window{position:absolute;left:120px;top:600px;width:840px;height:470px;border-radius:28px;background:url(bg.jpg) -120px -600px/1080px 1350px}
 .check{display:flex;gap:16px;align-items:flex-start;font-size:30px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
-.check i{flex:none;width:38px;height:38px;border-radius:50%;background:var(--du-red);display:flex;align-items:center;justify-content:center;margin-top:1px}
+.check i{flex:none;width:38px;height:38px;border-radius:50%;background:var(--du-white);display:flex;align-items:center;justify-content:center;margin-top:1px}
 </style>
 </head>
 <body>
 <section class="s" id="s1">
-  <div class="panel"></div>
-  <div class="window" role="img" aria-label="Retrato de João Nascimento, a sorrir, de camisola cinzenta sobre camisa branca."></div>
+  <!-- painel vermelho irregular: retângulo menos a janela, com o degrau onde entram os vistos -->
+  <svg class="abs" aria-hidden="true" style="inset:0" width="1080" height="1350" viewBox="0 0 1080 1350">
+    <path fill-rule="evenodd" fill="#e8112d" d="M60 84 H1020 V1266 H60 Z
+      M148 600 H932 Q960 600 960 628 V982 Q960 1010 932 1010 H388 Q360 1010 360 1038 V1152 Q360 1180 332 1180 H148 Q120 1180 120 1152 V628 Q120 600 148 600 Z"/>
+  </svg>
+  <div class="abs" role="img" aria-label="Retrato de João Nascimento, a sorrir, de camisola cinzenta sobre camisa branca." style="left:120px;top:600px;width:840px;height:410px"></div>
   <!-- só a cabeça sai da janela, por cima do painel -->
   <img class="abs" src="joao-recorte.png" alt="" style="inset:0;width:1080px;height:1350px;clip-path:inset(0 0 744px 0)">
 
-  <div class="abs" style="left:120px;top:150px">
+  <div class="abs" style="left:120px;top:150px;color:var(--du-white)">
     <div style="font-size:120px;font-weight:800;letter-spacing:-.05em;line-height:.95">Parabéns,<br>João.</div>
-    <div style="margin-top:28px;font-family:var(--du-font-mono);font-size:30px;letter-spacing:.06em;color:var(--du-cream-86)">CTO da digiUP</div>
+    <div style="margin-top:28px;font-family:var(--du-font-mono);font-size:30px;letter-spacing:.06em">CTO da digiUP</div>
   </div>
 
-  <div class="abs" style="right:96px;top:540px;transform:rotate(-7deg);background:var(--du-cream);color:var(--du-black);border:4px solid var(--du-red);border-radius:999px;padding:12px 28px;font-size:30px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.35)">Hoje faz anos</div>
+  <div class="abs" style="right:96px;top:540px;transform:rotate(-7deg);background:var(--du-white);color:var(--du-black);border:4px solid var(--du-black);border-radius:999px;padding:12px 28px;font-size:30px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.35)">Hoje faz anos</div>
 
-  <div class="abs" style="left:120px;right:120px;top:1110px;display:grid;grid-template-columns:1fr 1fr 150px;gap:32px;align-items:start">
-    <div class="check"><i aria-hidden="true"><svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8l5 5L18 2" fill="none" stroke="#fff" stroke-width="3.5"/></svg></i>Traça o caminho da equipa</div>
-    <div class="check"><i aria-hidden="true"><svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8l5 5L18 2" fill="none" stroke="#fff" stroke-width="3.5"/></svg></i>Transforma desafios em tecnologia</div>
-    <img src="digiup-white.svg" alt="digiUP" style="width:130px;justify-self:end;margin-top:4px">
+  <div class="abs" style="left:396px;top:1046px;width:420px;display:flex;flex-direction:column;gap:22px;color:var(--du-white)">
+    <div class="check"><i aria-hidden="true"><svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8l5 5L18 2" fill="none" stroke="#e8112d" stroke-width="3.5"/></svg></i>Traça o caminho da equipa</div>
+    <div class="check"><i aria-hidden="true"><svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8l5 5L18 2" fill="none" stroke="#e8112d" stroke-width="3.5"/></svg></i>Transforma desafios em tecnologia</div>
   </div>
+  <img class="abs" src="digiup-white.svg" alt="digiUP" style="right:120px;top:1150px;width:130px">
 </section>
 </body>
 </html>
