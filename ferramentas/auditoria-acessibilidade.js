@@ -5,7 +5,7 @@
 const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
-const { PNG } = require(require.resolve('pngjs', { paths: [process.cwd(), __dirname] }));
+const { PNG } = require('pngjs');
 
 const MIN_ANY = 26, MIN_BODY = 30;          // px on a 1080px canvas
 const LARGE = 66, LARGE_BOLD = 52;          // 24px / 18.66px bold at phone scale (~0.36)
