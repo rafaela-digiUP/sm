@@ -59,7 +59,33 @@ function keycap(u = 1, text = '', sub = '', opts = {}) {
 }
 
 let camera;
-if (mode === 'aa') {
+function padlock(open) {
+  const g = new THREE.Group();
+  const mat = capMat();
+  const body = new THREE.Mesh(new RoundedBoxGeometry(1.7, 1.35, 0.72, 8, 0.16), mat); body.castShadow = true; g.add(body);
+  const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.1, 32), new THREE.MeshBasicMaterial({ color: RED, toneMapped: false }));
+  hole.rotation.x = Math.PI / 2; hole.position.set(0, 0.1, 0.33); g.add(hole);
+  const slot = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.32, 0.1), new THREE.MeshBasicMaterial({ color: RED, toneMapped: false }));
+  slot.position.set(0, -0.12, 0.33); g.add(slot);
+  const steel = new THREE.MeshPhysicalMaterial({ color: 0x2a2224, metalness: 1.0, roughness: 0.22, clearcoat: 0.4 });
+  const sh = new THREE.Group();
+  const arc = new THREE.Mesh(new THREE.TorusGeometry(0.52, 0.13, 32, 64, Math.PI), steel); arc.position.y = 0.9; sh.add(arc);
+  const legL = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.5, 32), steel); legL.position.set(-0.52, 0.65, 0); sh.add(legL);
+  const legR = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, open ? 0.5 : 0.5, 32), steel); legR.position.set(0.52, 0.65, 0); sh.add(legR);
+  sh.children.forEach(m => m.castShadow = true);
+  if (open) { sh.position.set(0.52, 0.42, 0); sh.children.forEach(m => m.position.x -= 0.52); sh.rotation.y = -1.0; }
+  g.add(sh);
+  return g;
+}
+if (mode === 'lock-open' || mode === 'lock-closed') {
+  const lk = padlock(mode === 'lock-open'); lk.rotation.set(0.08, -0.45, mode === 'lock-open' ? -0.12 : 0.06); lk.position.y = -0.25; scene.add(lk);
+  camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 100);
+  camera.position.set(-0.8, 0.9, 6.0); camera.lookAt(0.05, 0.35, 0);
+  const rim = new THREE.RectAreaLight(RED, 50, 4, 1.4); rim.position.set(2.6, 1.4, -2.2); rim.lookAt(0, 0.2, 0); scene.add(rim);
+  const rim2 = new THREE.RectAreaLight(0xff2b3b, 18, 3, 0.8); rim2.position.set(-2.8, -0.6, -1.8); rim2.lookAt(0, 0, 0); scene.add(rim2);
+  const key = new THREE.SpotLight(0xffe2d6, 9, 14, 0.5, 0.9, 1.6); key.position.set(-3.0, 3.6, 3.4); key.target.position.set(0, 0, 0); scene.add(key, key.target);
+  const glow = new THREE.PointLight(RED, 3, 2.5, 1.5); glow.position.set(0, 0, 1.1); lk.add(glow);
+} else if (mode === 'aa') {
   const json = await new Promise((res, rej) => new TTFLoader().load('./lexend-700.ttf', res, undefined, rej));
   const font = new Font(json);
   const geo = new TextGeometry('AA', { font, size: 1.6, height: 0.55, curveSegments: 16, bevelEnabled: true, bevelThickness: 0.06, bevelSize: 0.035, bevelSegments: 6 });

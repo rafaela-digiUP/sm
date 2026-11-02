@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+/* digiUP Design System — a diagnostic: dark and paper alternate, one sign per slide */
+:root{
+  --du-black:#0a0305; --du-black-card:#170a0d; --du-cream:#f7efe9; --du-paper:#faf7f4; --du-white:#ffffff;
+  --du-red:#e8112d; --du-crimson:#b00e22;
+  --du-cream-86:rgba(247,239,233,.86); --du-cream-72:rgba(247,239,233,.72); --du-cream-55:rgba(247,239,233,.55);
+  --du-cream-28:rgba(247,239,233,.28); --du-cream-14:rgba(247,239,233,.14); --du-cream-10:rgba(247,239,233,.1);
+  --du-ink:#0a0305; --du-ink-72:rgba(10,3,5,.72); --du-ink-62:rgba(10,3,5,.62); --du-ink-14:rgba(10,3,5,.14); --du-ink-12:rgba(10,3,5,.12);
+  --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);display:flex;flex-wrap:wrap;gap:48px;padding:56px;align-items:flex-start}
+.s{position:relative;width:1080px;height:1350px;flex-shrink:0;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;padding:76px 82px 82px}
+.dark{background:var(--du-black);color:var(--du-cream)}
+.light{background:var(--du-paper);color:var(--du-ink)}
+.net{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.glow{position:absolute;inset:0;z-index:-1}
+.top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.top img{width:118px;height:auto}
+.counter{font-family:var(--du-font-mono);font-size:16px;letter-spacing:.16em}
+.dark .counter{color:var(--du-cream-55)} .light .counter{color:var(--du-ink-62)}
+.eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.2em;text-transform:uppercase}
+.dark .eyebrow{color:var(--du-cream-72)} .light .eyebrow{color:var(--du-ink-72)}
+.eyebrow .dot{width:11px;height:11px;border-radius:50%;background:var(--du-red)}
+.light .eyebrow .dot{background:var(--du-crimson)}
+.h{font-weight:700;letter-spacing:-.035em;line-height:1.04}
+.hl{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.hl > div{font-size:84px;font-weight:700;letter-spacing:-.035em;line-height:1.08}
+.hl .c{background:var(--du-cream);color:var(--du-black);padding:2px 20px;border-radius:6px}
+.hl .r{background:var(--du-red);color:var(--du-white);padding:2px 20px;border-radius:6px}
+.body{font-size:28px;line-height:1.5;max-width:820px;text-wrap:pretty}
+.dark .body{color:var(--du-cream-72)} .light .body{color:var(--du-ink-72)}
+.meta{padding-top:28px;display:flex;justify-content:space-between;font-family:var(--du-font-mono);font-size:16px;letter-spacing:.18em;text-transform:uppercase;position:relative;z-index:2}
+.dark .meta{border-top:1px solid var(--du-cream-14);color:var(--du-cream-72)}
+.light .meta{border-top:1px solid var(--du-ink-14);color:var(--du-ink-72)}
+
+/* sign header: giant number + status chip */
+.sign{display:flex;align-items:flex-end;justify-content:space-between;margin-top:72px;padding-bottom:26px}
+.dark .sign{border-bottom:1px solid var(--du-cream-14)} .light .sign{border-bottom:2px solid var(--du-ink)}
+.num{font-weight:700;font-size:200px;letter-spacing:-.06em;line-height:.78}
+.num small{font-family:var(--du-font-mono);font-weight:400;font-size:24px;letter-spacing:.1em;margin-left:12px;vertical-align:top}
+.dark .num{color:var(--du-red)} .dark .num small{color:var(--du-cream-55)}
+.light .num{color:var(--du-crimson)} .light .num small{color:var(--du-ink-62)}
+.chip{font-family:var(--du-font-mono);font-size:17px;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;padding:12px 22px;margin-bottom:8px}
+.dark .chip{background:var(--du-red);color:var(--du-white)}
+.light .chip{background:var(--du-crimson);color:var(--du-white)}
+
+/* readout: what a monitor would show */
+.readout{border-radius:16px;padding:36px 40px;font-family:var(--du-font-mono)}
+.dark .readout{background:var(--du-black-card);border:1px solid var(--du-cream-10)}
+.light .readout{background:var(--du-white);border:1px solid var(--du-ink-12);border-radius:12px}
+.readout .lab{font-size:15px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+.dark .readout .lab{color:var(--du-cream-72)} .light .readout .lab{color:var(--du-crimson)}
+.rl{display:grid;grid-template-columns:270px 1fr;gap:20px;font-size:27px;line-height:1.3;padding:18px 0}
+.dark .rl{border-top:1px solid var(--du-cream-10)} .light .rl{border-top:1px solid var(--du-ink-12)}
+.rl span{letter-spacing:.1em;text-transform:uppercase;font-size:19px;padding-top:5px}
+.dark .rl span{color:var(--du-cream-72)} .light .rl span{color:var(--du-ink-72)}
+.rl b{font-weight:500}
+.alert:before{content:"● ";}
+.dark .alert{color:#ff5566} .light .alert{color:var(--du-crimson)}
+.pill{display:inline-flex;align-items:center;gap:14px;background:var(--du-red);color:var(--du-white);border-radius:999px;padding:24px 40px;font-size:28px;font-weight:600}
+.disc{width:70px;height:70px;border-radius:50%;background:var(--du-red);color:var(--du-white);display:flex;align-items:center;justify-content:center;font-size:30px}
+.feat{display:flex;flex-wrap:wrap;gap:12px}
+.feat span{font-family:var(--du-font-mono);font-size:17px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--du-cream-28);border-radius:999px;padding:12px 20px;color:var(--du-cream-86)}
+</style>
+</head>
+<body>
+
+<!-- 01 · escuro · capa: cadeado aberto -->
+<section class="s dark" id="s1">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="glow" style="background:radial-gradient(70% 45% at 72% 30%,rgba(176,14,34,.5) 0%,rgba(10,3,5,0) 70%)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">01/07</span></div>
+  <img src="cadeado-aberto.png" alt="" style="position:absolute;right:-10px;top:160px;width:470px;z-index:0">
+  <div style="margin-top:auto;position:relative;z-index:1">
+    <div class="eyebrow"><span class="dot"></span>digiSHIELD · Segurança</div>
+    <div class="hl" style="margin-top:30px">
+      <div>O seu site</div>
+      <div class="c">está a dar</div>
+      <div class="r">sinais.</div>
+    </div>
+    <p class="body" style="margin-top:32px">Cinco sinais de que precisa de manutenção — antes de se tornar um problema.</p>
+  </div>
+  <div class="meta" style="margin-top:48px"><span>Desliza →</span><span>digiup.me</span></div>
+</section>
+
+<!-- 02 · claro · sinal 1 -->
+<section class="s light" id="s2">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="counter">02/07</span></div>
+  <div class="sign"><div class="num">01<small>/05</small></div><span class="chip">Atualizações</span></div>
+  <div class="h" style="margin-top:44px;font-size:64px">Há atualizações pendentes há meses.</div>
+  <p class="body" style="margin-top:24px">Cada atualização em atraso do CMS ou dos plugins pode deixar aberta uma falha que já é pública.</p>
+  <div class="readout" style="margin-top:auto">
+    <div class="lab">Exemplo de leitura</div>
+    <div class="rl"><span>CMS</span><b>6.4 <span style="font-size:inherit;letter-spacing:0">→</span> 6.7 disponível</b></div>
+    <div class="rl"><span>Plugins</span><b class="alert">7 atualizações pendentes</b></div>
+    <div class="rl"><span>Última revisão</span><b>há 5 meses</b></div>
+  </div>
+</section>
+
+<!-- 03 · escuro · sinal 2 -->
+<section class="s dark" id="s3">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">03/07</span></div>
+  <div class="sign"><div class="num">02<small>/05</small></div><span class="chip">Certificado</span></div>
+  <div class="h" style="margin-top:44px;font-size:64px">O browser avisa que o site não é seguro.</div>
+  <p class="body" style="margin-top:24px">Um certificado SSL expirado ou mal configurado afasta quem chega antes de ler uma palavra.</p>
+  <div class="readout" style="margin-top:auto">
+    <div class="lab">Exemplo de leitura</div>
+    <div class="rl"><span>HTTPS</span><b>ativo</b></div>
+    <div class="rl"><span>Certificado</span><b class="alert">expira em 6 dias</b></div>
+    <div class="rl"><span>Renovação</span><b>manual</b></div>
+  </div>
+</section>
+
+<!-- 04 · claro · sinal 3 -->
+<section class="s light" id="s4">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="counter">04/07</span></div>
+  <div class="sign"><div class="num">03<small>/05</small></div><span class="chip">Desempenho</span></div>
+  <div class="h" style="margin-top:44px;font-size:64px">Ficou lento e ninguém mexeu em nada.</div>
+  <p class="body" style="margin-top:24px">Pode ser uma base de dados por limpar, falta de espaço no servidor ou código malicioso a correr em segundo plano.</p>
+  <div class="readout" style="margin-top:auto">
+    <div class="lab">Exemplo de leitura</div>
+    <div class="rl"><span>Carregamento</span><b class="alert">6,8 s</b></div>
+    <div class="rl"><span>Há 3 meses</span><b>1,9 s</b></div>
+    <div class="rl"><span>Alterações</span><b>nenhuma registada</b></div>
+  </div>
+</section>
+
+<!-- 05 · escuro · sinal 4 -->
+<section class="s dark" id="s5">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">05/07</span></div>
+  <div class="sign"><div class="num">04<small>/05</small></div><span class="chip">Formulários</span></div>
+  <div class="h" style="margin-top:44px;font-size:64px">Os pedidos de contacto pararam.</div>
+  <p class="body" style="margin-top:24px">Um formulário que deixa de enviar não avisa ninguém. Só se nota quando os clientes deixam de aparecer.</p>
+  <div class="readout" style="margin-top:auto">
+    <div class="lab">Exemplo de leitura</div>
+    <div class="rl"><span>Formulário</span><b>/contacto</b></div>
+    <div class="rl"><span>Envios</span><b class="alert">0 nos últimos 14 dias</b></div>
+    <div class="rl"><span>Média anterior</span><b>11 por semana</b></div>
+  </div>
+</section>
+
+<!-- 06 · claro · sinal 5 -->
+<section class="s light" id="s6">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="counter">06/07</span></div>
+  <div class="sign"><div class="num">05<small>/05</small></div><span class="chip">Backups</span></div>
+  <div class="h" style="margin-top:44px;font-size:64px">Ninguém sabe quando foi o último backup.</div>
+  <p class="body" style="margin-top:24px">Sem uma cópia recente — e testada — qualquer falha pode apagar meses de trabalho.</p>
+  <div class="readout" style="margin-top:auto">
+    <div class="lab">Exemplo de leitura</div>
+    <div class="rl"><span>Último backup</span><b class="alert">sem registo</b></div>
+    <div class="rl"><span>Restauro testado</span><b class="alert">nunca</b></div>
+    <div class="rl"><span>Responsável</span><b>por definir</b></div>
+  </div>
+</section>
+
+<!-- 07 · escuro · CTA: cadeado fechado -->
+<section class="s dark" id="s7">
+  <img class="net" src="net-subtle-1080x1350.svg" alt="">
+  <div class="glow" style="background:radial-gradient(70% 42% at 70% 26%,rgba(176,14,34,.42) 0%,rgba(10,3,5,0) 70%)"></div>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="counter">07/07</span></div>
+  <img src="cadeado-fechado.png" alt="" style="position:absolute;right:60px;top:120px;width:360px;z-index:0">
+  <div style="margin-top:auto;display:flex;flex-direction:column;gap:32px;align-items:flex-start;position:relative;z-index:1">
+    <div class="eyebrow"><span class="dot"></span>digiSHIELD · Proteção contínua</div>
+    <div class="h" style="font-size:76px;max-width:900px">Reconheceu dois destes sinais?</div>
+    <p class="body">A segurança digital exige acompanhamento, atualizações, monitorização e capacidade de resposta. É isso que o digiSHIELD faz pelo seu site.</p>
+    <div class="feat"><span>Monitorização ativa</span><span>Resposta rápida</span><span>Ambientes mais seguros</span></div>
+    <div style="display:flex;align-items:center;gap:22px;margin-top:6px"><span class="pill">Vamos conversar <span>→</span></span><span class="disc">↗</span></div>
+  </div>
+  <div class="meta" style="margin-top:48px"><span>Envie «SHIELD» por mensagem</span><span>digiup.me</span></div>
+</section>
+
+</body>
+</html>
