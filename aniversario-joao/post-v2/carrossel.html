@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+/* Aniversário — painel preto sobre a foto, janela recortada, a cabeça sai da janela */
+:root{
+  --du-black:#0a0305; --du-cream:#f7efe9; --du-white:#ffffff; --du-red:#e8112d;
+  --du-cream-86:rgba(247,239,233,.86);
+  --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);padding:56px}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;isolation:isolate;background:url(bg.jpg) 0 0/1080px 1350px;color:var(--du-cream)}
+.abs{position:absolute}
+.panel{position:absolute;left:60px;top:84px;right:60px;bottom:84px;background:var(--du-black)}
+.window{position:absolute;left:120px;top:600px;width:840px;height:470px;border-radius:28px;background:url(bg.jpg) -120px -600px/1080px 1350px}
+.check{display:flex;gap:16px;align-items:flex-start;font-size:30px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.check i{flex:none;width:38px;height:38px;border-radius:50%;background:var(--du-red);display:flex;align-items:center;justify-content:center;margin-top:1px}
+</style>
+</head>
+<body>
+<section class="s" id="s1">
+  <div class="panel"></div>
+  <div class="window" role="img" aria-label="Retrato de João Nascimento, a sorrir, de camisola cinzenta sobre camisa branca."></div>
+  <!-- só a cabeça sai da janela, por cima do painel -->
+  <img class="abs" src="joao-recorte.png" alt="" style="inset:0;width:1080px;height:1350px;clip-path:inset(0 0 744px 0)">
+
+  <div class="abs" style="left:120px;top:150px">
+    <div style="font-size:120px;font-weight:800;letter-spacing:-.05em;line-height:.95">Parabéns,<br>João.</div>
+    <div style="margin-top:28px;font-family:var(--du-font-mono);font-size:30px;letter-spacing:.06em;color:var(--du-cream-86)">CTO da digiUP</div>
+  </div>
+
+  <div class="abs" style="right:96px;top:540px;transform:rotate(-7deg);background:var(--du-cream);color:var(--du-black);border:4px solid var(--du-red);border-radius:999px;padding:12px 28px;font-size:30px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.35)">Hoje faz anos</div>
+
+  <div class="abs" style="left:120px;right:120px;top:1110px;display:grid;grid-template-columns:1fr 1fr 150px;gap:32px;align-items:start">
+    <div class="check"><i aria-hidden="true"><svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8l5 5L18 2" fill="none" stroke="#fff" stroke-width="3.5"/></svg></i>Traça o caminho da equipa</div>
+    <div class="check"><i aria-hidden="true"><svg width="20" height="16" viewBox="0 0 20 16"><path d="M2 8l5 5L18 2" fill="none" stroke="#fff" stroke-width="3.5"/></svg></i>Transforma desafios em tecnologia</div>
+    <img src="digiup-white.svg" alt="digiUP" style="width:130px;justify-self:end;margin-top:4px">
+  </div>
+</section>
+</body>
+</html>
