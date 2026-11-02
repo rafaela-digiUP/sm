@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=block" rel="stylesheet">
+<style>
+/* Birthday post — the team template: name on top, portrait right, two-beat line about the role, dedication */
+:root{
+  --du-black:#0a0305; --du-cream:#f7efe9; --du-red:#e8112d; --du-pink:#ff5566;
+  --du-cream-86:rgba(247,239,233,.86); --du-cream-28:rgba(247,239,233,.28);
+  --du-font-sans:Lexend,Helvetica,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);padding:56px}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;isolation:isolate;background:var(--du-black);color:var(--du-cream)}
+.abs{position:absolute}
+.label{font-size:32px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--du-pink)}
+.name{font-size:128px;font-weight:700;letter-spacing:-.01em;line-height:.98;text-transform:uppercase}
+.rule{width:124px;height:5px;background:var(--du-red)}
+.txt{font-size:32px;line-height:1.42;color:var(--du-cream-86)}
+.txt b{color:var(--du-cream);font-weight:700}
+</style>
+</head>
+<body>
+<section class="s" id="s1">
+  <img class="abs" src="net-subtle-1080x1350.svg" alt="" style="inset:0;width:100%;height:100%;object-fit:cover;z-index:-3">
+  <div class="abs" style="inset:0;z-index:-3;background:radial-gradient(55% 35% at 82% 12%,rgba(176,14,34,.42) 0%,rgba(10,3,5,0) 70%)"></div>
+
+  <!-- portrait: cut-out, red back-light spill, fading into the dark on the text side -->
+  <img class="abs" src="joao-glow.png" alt="" style="left:178px;top:395px;width:1301px;z-index:-2">
+  <img class="abs" src="joao-pessoa.png" alt="Retrato de João Nascimento, a sorrir, iluminado por trás com luz vermelha." style="left:178px;top:395px;width:1301px;z-index:-1">
+  <div class="abs" style="inset:0;z-index:0;background:linear-gradient(90deg,rgba(10,3,5,.97) 0%,rgba(10,3,5,.93) 38%,rgba(10,3,5,.55) 52%,rgba(10,3,5,0) 64%),linear-gradient(0deg,rgba(10,3,5,.9) 0%,rgba(10,3,5,0) 22%)"></div>
+
+  <img class="abs" src="digiup-white.svg" alt="digiUP" style="left:82px;top:76px;width:118px;z-index:1">
+
+  <div class="abs" style="left:82px;top:184px;z-index:1">
+    <div class="label">Parabéns</div>
+    <div class="name" style="margin-top:22px">João<br>Nascimento</div>
+    <div class="rule" style="margin-top:34px"></div>
+  </div>
+
+  <div class="abs" style="left:82px;top:600px;width:470px;z-index:1">
+    <div class="label">CTO</div>
+    <p class="txt" style="margin-top:34px">Há pessoas que <b>escrevem</b> código.</p>
+    <p class="txt" style="margin-top:26px">E há pessoas que <b>traçam o caminho</b> para toda a equipa.</p>
+    <div style="width:124px;height:2px;background:var(--du-cream-28);margin:40px 0"></div>
+    <p class="txt">Hoje celebramos a visão, o rigor e a liderança de quem orienta a tecnologia da digiUP todos os dias.</p>
+  </div>
+</section>
+</body>
+</html>
