@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+/* Caso de estudo FootGenius — 7 slides, mesmos tokens e recursos do feed */
+:root{
+  --du-black:#0a0305; --du-black-card:#170a0d; --du-cream:#f7efe9; --du-paper:#faf7f4; --du-white:#ffffff;
+  --du-red:#e8112d; --du-crimson:#b00e22;
+  --du-cream-86:rgba(247,239,233,.86); --du-cream-72:rgba(247,239,233,.72); --du-cream-28:rgba(247,239,233,.28); --du-cream-14:rgba(247,239,233,.14);
+  --du-ink:#0a0305; --du-ink-72:rgba(10,3,5,.72); --du-ink-14:rgba(10,3,5,.14);
+  --du-font-sans:Lexend,Helvetica,sans-serif; --du-font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);display:flex;flex-wrap:wrap;gap:48px;padding:56px;align-items:flex-start}
+.s{position:relative;width:1080px;height:1350px;flex-shrink:0;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;padding:76px 82px 82px}
+.dark{background:var(--du-black);color:var(--du-cream)}
+.light{background:var(--du-paper);color:var(--du-ink)}
+.red{background:var(--du-crimson);color:var(--du-white)}
+.abs{position:absolute}
+.top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:3}
+.top img{width:118px;height:auto}
+.mono{font-family:var(--du-font-mono);font-size:26px;letter-spacing:.06em;line-height:1.35}
+.dark .mono{color:var(--du-cream-86)} .light .mono{color:var(--du-ink-72)} .red .mono{color:var(--du-white)}
+.up{text-transform:uppercase}
+.giant{font-weight:800;letter-spacing:-.055em;line-height:.92}
+.h{font-weight:700;letter-spacing:-.035em;line-height:1.04}
+.body{font-size:32px;line-height:1.45;text-wrap:pretty}
+.dark .body{color:var(--du-cream-86)} .light .body{color:var(--du-ink-72)} .red .body{color:var(--du-white)}
+.arrow{font-size:64px;line-height:1;font-weight:400}
+.dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--du-red);margin-right:14px;vertical-align:4px}
+.light .dot{background:var(--du-crimson)} .red .dot{background:var(--du-white)}
+.hl{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.hl > div{font-size:76px;font-weight:700;letter-spacing:-.035em;line-height:1.08}
+.hl .c{background:var(--du-cream);color:var(--du-black);padding:2px 20px;border-radius:6px}
+.hl .r{background:var(--du-red);color:var(--du-white);padding:2px 20px;border-radius:6px}
+.light .hl .c{background:var(--du-black);color:var(--du-cream)}
+.light .hl .r{background:var(--du-crimson)}
+.pill{display:inline-block;font-family:var(--du-font-mono);font-weight:500;background:var(--du-crimson);color:var(--du-white);border-radius:999px;padding:4px 26px 8px;letter-spacing:-.01em}
+.cta{display:inline-flex;align-items:center;gap:14px;background:var(--du-red);color:var(--du-white);border-radius:999px;padding:24px 40px;font-size:30px;font-weight:600}
+.apill{display:inline-flex;align-items:center;border:3px solid currentColor;border-radius:999px;height:56px;padding:0 22px;vertical-align:middle}
+.apill svg{display:block}
+.foot{margin-top:44px;padding-top:24px;display:flex;justify-content:space-between}
+.dark .foot{border-top:1px solid var(--du-cream-14)} .light .foot{border-top:1px solid var(--du-ink-14)}
+/* listas numeradas (claro) */
+.row{display:grid;grid-template-columns:110px 1fr;align-items:baseline;padding:28px 0;border-top:1px solid var(--du-ink-14)}
+.row:last-child{border-bottom:1px solid var(--du-ink-14)}
+.row .n{font-family:var(--du-font-mono);font-weight:500;font-size:36px;color:var(--du-crimson)}
+.row b{font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1.22}
+.row span.d{display:block;grid-column:2;font-size:30px;line-height:1.4;color:var(--du-ink-72);margin-top:8px}
+/* blocos (escuro) */
+.area{padding:28px 0;border-top:1px solid var(--du-cream-14)}
+.area:last-child{border-bottom:1px solid var(--du-cream-14)}
+.area b{display:block;font-size:44px;font-weight:700;letter-spacing:-.025em}
+.area span{display:block;font-size:30px;line-height:1.4;color:var(--du-cream-86);margin-top:8px}
+.area.num{display:grid;grid-template-columns:100px 1fr}
+.area.num i{font-style:normal;font-family:var(--du-font-mono);font-weight:500;font-size:36px;color:#ff4d5e;line-height:1.5}
+/* números */
+.stat{display:grid;grid-template-columns:400px 1fr;align-items:center;padding:24px 0;border-top:2px solid var(--du-ink)}
+.stat:last-child{border-bottom:2px solid var(--du-ink)}
+.stat .v{font-weight:800;font-size:144px;letter-spacing:-.07em;line-height:.9;color:var(--du-crimson)}
+.stat .l{font-size:36px;font-weight:600;line-height:1.25;letter-spacing:-.01em}
+.meta{display:grid;grid-template-columns:repeat(3,auto);gap:0 56px;justify-content:start}
+.meta .mono{font-size:26px}
+.meta b{display:block;font-size:30px;font-weight:600;margin-top:6px;letter-spacing:-.01em}
+</style>
+</head>
+<body>
+
+<!-- 01 · claro · capa -->
+<section class="s light" id="s1">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono up">Caso de estudo</span></div>
+  <div class="mono up" style="margin-top:100px"><span class="dot"></span>FootGenius</div>
+  <div class="giant" style="margin-top:40px;font-size:118px;line-height:1.26">Tecnologia que<br>acompanha a<br><span style="position:relative;display:inline-block">evolução
+    <svg class="abs" style="left:-44px;top:-4px;width:calc(100% + 88px);height:150px;overflow:visible" viewBox="0 0 520 180" preserveAspectRatio="none" aria-hidden="true"><path d="M262 6 C 120 -2, 6 36, 4 92 C 2 156, 160 180, 300 176 C 440 172, 518 132, 514 82 C 510 30, 380 0, 230 10 C 190 12, 160 14, 136 16" fill="none" stroke="#b00e22" stroke-width="7" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></span><br>de cada atleta.</div>
+  <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end">
+    <div class="meta">
+      <div><span class="mono up">Cliente</span><b>FootGenius</b></div>
+      <div><span class="mono up">Setor</span><b>Desporto e formação</b></div>
+      <div><span class="mono up">Ano</span><b>2022–2025</b></div>
+    </div>
+    <span class="arrow" aria-hidden="true">→</span>
+  </div>
+</section>
+
+<!-- 02 · escuro · o desafio -->
+<section class="s dark" id="s2">
+  <img class="abs" src="net-subtle-1080x1350.svg" alt="" style="inset:0;width:100%;height:100%;object-fit:cover;z-index:-2">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="mono">02/07</span></div>
+  <div class="mono up" style="margin-top:96px"><span class="dot"></span>O desafio</div>
+  <div class="h" style="margin-top:24px;font-size:60px;line-height:1.12">A FootGenius criou uma metodologia própria de treino e avaliação de atletas de futebol.</div>
+  <div style="margin-top:auto">
+    <p class="body" style="max-width:860px;margin-bottom:34px">Mas fazer crescer o método implicava uma pergunta:</p>
+    <div class="hl"><div>Como acompanhar</div><div>cada atleta</div><div class="c">sem complicar</div><div class="r">a operação?</div></div>
+  </div>
+</section>
+
+<!-- 03 · claro · o que era preciso resolver -->
+<section class="s light" id="s3">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono">03/07</span></div>
+  <div class="h" style="margin-top:96px;font-size:80px">O que era preciso<br>resolver.</div>
+  <div style="margin-top:auto">
+    <div class="row"><span class="n">01</span><b>Centralizar a informação de atletas, treinos e resultados.</b></div>
+    <div class="row"><span class="n">02</span><b>Facilitar a organização de exercícios e marcações.</b></div>
+    <div class="row"><span class="n">03</span><b>Acompanhar a evolução técnica de cada atleta.</b></div>
+    <div class="row"><span class="n">04</span><b>Dar ferramentas a treinadores e administração.</b></div>
+    <div class="row"><span class="n">05</span><b>Preparar a tecnologia para novos polos.</b></div>
+  </div>
+</section>
+
+<!-- 04 · carmim · citação -->
+<section class="s red" id="s4">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="mono">04/07</span></div>
+  <div class="giant" aria-hidden="true" style="margin-top:70px;font-size:300px;line-height:.7;opacity:.9">“</div>
+  <div class="h" style="margin-top:10px;font-size:92px;line-height:1.04">A tecnologia não substitui o trabalho de quem treina.</div>
+  <p style="margin-top:auto;font-size:48px;font-weight:600;line-height:1.25;letter-spacing:-.02em;max-width:880px">Dá-lhe mais informação para acompanhar, avaliar e evoluir.</p>
+  <div class="mono up foot" style="border-top:1px solid rgba(255,255,255,.3)"><span>FootGenius × digiUP</span><span>Desde 2022</span></div>
+</section>
+
+<!-- 05 · escuro · como respondemos -->
+<section class="s dark" id="s5">
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="mono">05/07</span></div>
+  <div class="mono up" style="margin-top:80px"><span class="dot"></span>A solução</div>
+  <div class="h" style="margin-top:24px;font-size:72px">Como respondemos<br>ao desafio.</div>
+  <p class="body" style="margin-top:28px;max-width:900px">Uma plataforma web e mobile que reúne atletas, exercícios, marcações e resultados.</p>
+  <div style="margin-top:auto">
+    <div class="area num"><i>01</i><div><b>Gestão centralizada</b><span>Atletas, administração e histórico num só lugar.</span></div></div>
+    <div class="area num"><i>02</i><div><b>Treinos e marcações</b><span>Do exercício ao acompanhamento das sessões.</span></div></div>
+    <div class="area num"><i>03</i><div><b>Desempenho e evolução</b><span>Resultados de treino em informação visual.</span></div></div>
+    <div class="area num"><i>04</i><div><b>Um produto que evolui</b><span>Pensado para crescer com o negócio.</span></div></div>
+  </div>
+</section>
+
+<!-- 06 · claro · o que mudou -->
+<section class="s light" id="s6">
+  <div class="top"><img src="digiup-black.svg" alt="digiUP"><span class="mono">06/07</span></div>
+  <div class="mono up" style="margin-top:96px"><span class="dot"></span>O impacto</div>
+  <div class="h" style="margin-top:24px;font-size:80px">O que mudou.</div>
+  <div style="margin-top:auto">
+    <div class="stat"><span class="v">±600</span><span class="l">atletas registados</span></div>
+    <div class="stat"><span class="v">3</span><span class="l">perfis: administração, treinadores e atletas</span></div>
+    <div class="stat"><span class="v">2022</span><span class="l">a evoluir a plataforma em conjunto</span></div>
+  </div>
+  <p class="body" style="margin-top:40px;max-width:880px">A tecnologia tornou-se parte do funcionamento do negócio, e não apenas uma ferramenta adicional.</p>
+</section>
+
+<!-- 07 · escuro · CTA -->
+<section class="s dark" id="s7">
+  <div class="abs" style="inset:0;z-index:-1;background:radial-gradient(70% 50% at 70% 30%,rgba(176,14,34,.45) 0%,rgba(10,3,5,0) 70%)"></div>
+  <svg class="abs" aria-hidden="true" style="left:470px;top:220px" width="520" height="420" viewBox="0 0 520 420">
+    <path d="M10 380 C 90 370, 120 300, 190 290 S 280 250, 320 180 S 420 70, 500 40" fill="none" stroke="#e8112d" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="190" cy="290" r="14" fill="#f7efe9"/><circle cx="320" cy="180" r="14" fill="#f7efe9"/><circle cx="500" cy="40" r="20" fill="#e8112d"/>
+  </svg>
+  <div class="top"><img src="digiup-white.svg" alt="digiUP"><span class="mono">07/07</span></div>
+  <div style="margin-top:auto;position:relative;z-index:1;display:flex;flex-direction:column;gap:34px;align-items:flex-start">
+    <div class="hl"><div>Tem um desafio</div><div class="c">semelhante?</div></div>
+    <p class="body" style="max-width:860px">Podemos ajudar a definir e desenvolver a solução certa para o seu negócio.</p>
+    <span class="cta">Fale com a nossa equipa <span>→</span></span>
+  </div>
+  <div class="mono foot"><span>digiup.me/work</span><span>Caso de estudo</span></div>
+</section>
+
+</body>
+</html>
