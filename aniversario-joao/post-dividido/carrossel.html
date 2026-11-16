@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;800&family=JetBrains+Mono:wght@400&display=block" rel="stylesheet">
+<style>
+/* Aniversário — dividido ao meio: texto no preto, pessoa recortada sobre papel a atravessar a divisão */
+:root{--du-black:#0a0305;--du-paper:#faf7f4;--du-white:#ffffff;--du-red:#e8112d;--du-font-sans:Lexend,Helvetica,sans-serif;--du-font-mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#17181a;font-family:var(--du-font-sans);padding:56px}
+.s{position:relative;width:1080px;height:1350px;overflow:hidden;isolation:isolate;background:var(--du-paper)}
+.abs{position:absolute}
+</style>
+</head>
+<body>
+<section class="s" id="s1">
+  <div class="abs" style="left:0;top:0;width:560px;height:1350px;background:var(--du-black)"></div>
+  <img class="abs" src="digiup-black.svg" alt="digiUP" style="right:76px;top:128px;width:130px">
+  <img class="abs" src="joao-cutout.png" alt="João Nascimento, de braços cruzados e a sorrir, com camisola cinzenta e azul-escura." style="left:270px;top:72px;width:958px">
+
+  <div class="abs" style="left:76px;top:150px;width:460px;color:var(--du-white)">
+    <div style="display:flex;align-items:center;gap:16px;font-size:36px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;line-height:1"><span aria-hidden="true" style="width:14px;height:14px;border-radius:50%;background:var(--du-red)"></span>Parabéns</div>
+    <div style="margin-top:34px;margin-left:-4px;font-size:80px;font-weight:800;letter-spacing:-.045em;line-height:.98">João<br>Nascimento<span style="color:var(--du-red)">.</span></div>
+    <div style="margin-top:28px;font-family:var(--du-font-mono);font-size:32px;letter-spacing:.06em;line-height:1">CTO</div>
+  </div>
+
+  <p class="abs" style="left:76px;bottom:110px;width:380px;color:var(--du-white);font-size:30px;line-height:1.7">Há quem escreva código. E&nbsp;há quem trace o caminho para toda a equipa. Obrigado pela visão e pela liderança.</p>
+</section>
+</body>
+</html>

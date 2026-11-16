@@ -8,3 +8,4 @@ Para outra pessoa da equipa: trocar `joao-pessoa.png` e `joao-glow.png` (recorte
 - `post-v2-preto/` — a mesma versão com a moldura a preto (#0A0305).
 - `post-v2-cor/` — a versão de moldura preta com a fotografia a cores.
 - `post-v2-cor-bracos/` — versão a cores com a foto de braços cruzados (cortados pela caixa de texto), sem tratamento de imagem.
+- `post-dividido/` — layout dividido ao meio: texto no lado preto, o João recortado (a cores, braços cruzados) sobre papel, a atravessar a divisão.
